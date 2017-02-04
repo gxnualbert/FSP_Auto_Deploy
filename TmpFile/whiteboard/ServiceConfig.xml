@@ -1,0 +1,85 @@
+<!--
+    XXX.XXX.XXX.XXX             IceGrid Master节点的IP
+    xxxx                        IceGrid Master节点的端口
+    YYY.YYY.YYY.YYY             IceGrid Replica节点的IP
+    yyyy                        IceGrid Replica节点的端口
+    whiteboard_instance_id      whiteboard Service实例ID
+    whiteboard_instance_passwd  whiteboard Service实例密码
+
+    AAA.AAA.AAA.AAA             Manager Service实例的IP
+    aaaa                        Manager Service实例的端口
+    BBB.BBB.BBB.BBB             Whiteboard Service/Adaptor实例的IP
+    bbbb                        Whiteboard Service/Adaptor实例的端口
+
+    注意：Whiteboard Service/Adaptor只需要配置TCP地址
+--><Root>
+    <NATIPList>
+        <NATIP/>
+    </NATIPList>
+
+    <!--日志保存天数-->
+    <LogSaveDays>15</LogSaveDays>
+
+    <ICEServer>
+        <!--对应IceGrid MasterRegistry-->
+        <DBServer>192.168.7.105</DBServer>
+        <DBPort>10000</DBPort>
+    </ICEServer>
+    <ICEServer>
+        <!--对应IceGrid BackupRegistry-->
+        <DBServer>192.168.7.107</DBServer>
+        <DBPort>10001</DBPort>
+    </ICEServer>
+
+    <ProcessList>
+        <ServiceProcess>
+            <ProcessName>service</ProcessName>
+            <ListenList>
+                <Listen>
+                    <Addr>0</Addr>
+                    <Protocol>TCP</Protocol>
+                    <Port>1089</Port>
+                </Listen>
+                <Listen>
+                    <Addr>0</Addr>
+                    <Protocol>UDP</Protocol>
+                    <Port>1089</Port>
+                </Listen>
+            </ListenList>
+            <Service>
+                <Guid>{B25E583F-E4BE-4b2d-AC99-897D3CFFEDC3}</Guid>
+                <Name>whiteboard_service</Name>
+                <Priority>3</Priority>
+                <ApplicationID>22</ApplicationID>
+                <Config>
+                    <!-- 实例分组ID（0：非主实例组；1：主实例组-->
+                    <InstanceGroupID>1</InstanceGroupID>
+                    <ManagerServiceIPv4Addr>TCP:192.168.7.106:1089</ManagerServiceIPv4Addr>
+                    <ServiceAddress>TCP:192.168.7.107:1093</ServiceAddress>
+                    <AdaptorAddress>TCP:192.168.7.107:1093</AdaptorAddress>
+                    <ServiceInstanceID>white_board_instance_1</ServiceInstanceID>
+                    <ServiceInstancePassword>white_board_instance_fsp</ServiceInstancePassword>
+
+                    <!-- 与manager_service的连接断开后的重连间隔（单位：毫秒）-->
+                    <ReconnectionInterval>1000</ReconnectionInterval>
+                    <!-- 系统负载信息上报时间间隔（单位：毫秒）-->
+                    <ReportingStateInterval>10000</ReportingStateInterval>
+                    <!-- 流量过载阈值（单位：kb/s -->
+                    <FlowrateOverloadThreshold>1024000</FlowrateOverloadThreshold>
+                </Config>
+            </Service>
+
+            <Service>
+                <Guid>{C0B6177D-888B-4200-9FEF-84323B3FBC9D}</Guid>
+                <Name>whiteboard_adaptor</Name>
+                <Priority>4</Priority>
+                <ApplicationID>21</ApplicationID>
+                <Config>
+                    <!-- VNC Service连接信息 -->
+                    <ServiceAddress>TCP:192.168.7.107:1093</ServiceAddress>
+                </Config>
+            </Service>
+
+        </ServiceProcess>
+    </ProcessList>
+</Root>

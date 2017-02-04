@@ -1,0 +1,31 @@
+2017-02-04 16:32:39,813 - views.py:- start to install access
+2017-02-04 16:32:39,813 - views.py:- start to download access config file
+2017-02-04 16:32:40,125 - views.py:- start to download av config file
+2017-02-04 16:32:40,401 - views.py:- start to download ice_master config file
+2017-02-04 16:32:41,229 - views.py:- start to download ice_replica config file
+2017-02-04 16:32:42,056 - views.py:- start to download manager config file
+2017-02-04 16:32:42,332 - views.py:- start to download vnc config file
+2017-02-04 16:32:42,608 - views.py:- start to download white board config file
+2017-02-04 16:32:42,884 - views.py:- start to modify access config file
+2017-02-04 16:32:42,887 - views.py:- start to modify av config file
+2017-02-04 16:32:42,888 - views.py:- start to modify ice_master config file
+2017-02-04 16:32:42,891 - views.py:- start to modify ice_replica config file
+2017-02-04 16:32:42,894 - views.py:- start to modify manager config file
+2017-02-04 16:32:42,894 - views.py:- start to modify nginx config file
+2017-02-04 16:32:42,897 - views.py:- start to modify vnc config file
+2017-02-04 16:32:42,898 - views.py:- start to modify whiteboard config file
+2017-02-04 16:32:42,898 - views.py:- start to upload access config file
+2017-02-04 16:32:43,171 - views.py:- start to upload av config file
+2017-02-04 16:32:43,447 - views.py:- start to upload ice_master config file
+2017-02-04 16:32:44,272 - views.py:- start to upload ice_replica config file
+2017-02-04 16:32:45,095 - views.py:- start to upload manager config file
+2017-02-04 16:32:45,367 - views.py:- start to upload vnc config file
+2017-02-04 16:32:45,640 - views.py:- start to upload whiteboard config file
+2017-02-04 16:32:45,913 - views.py:- start access service
+2017-02-04 16:32:46,315 - views.py:- start av service
+2017-02-04 16:32:47,348 - views.py:- start ice_master service
+2017-02-04 16:32:47,927 - views.py:- start ice_replica service
+2017-02-04 16:32:49,467 - views.py:- start manager service
+2017-02-04 16:32:49,776 - views.py:- start nginx service
+2017-02-04 16:32:50,102 - views.py:- start vnc service
+2017-02-04 16:32:50,901 - views.py:- start whiteboard service

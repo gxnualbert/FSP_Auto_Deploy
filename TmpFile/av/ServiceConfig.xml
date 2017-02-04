@@ -1,0 +1,91 @@
+<!--
+    XXX.XXX.XXX.XXX     IceGrid Master节点的IP
+    xxxx                IceGrid Master节点的端口
+    YYY.YYY.YYY.YYY     IceGrid Replica节点的IP
+    yyyy                IceGrid Replica节点的端口
+    av_instance_id      AV Service实例ID
+    av_instance_passwd  AV Service实例密码
+
+    AAA.AAA.AAA.AAA     Manager Service实例的IP
+    aaaa                Manager Service实例的端口
+    BBB.BBB.BBB.BBB     AV Service/Adaptor实例的IP
+    bbbb                AV Service/Adaptor实例的端口
+
+	注意：AV Service/Adaptor需要配置TCP/UDP两个地址
+--><Root>
+    <NATIPList>
+        <NATIP/>
+    </NATIPList>
+
+    <!--日志保存天数-->
+    <LogSaveDays>15</LogSaveDays>
+
+    <ICEServer>
+        <!--对应IceGrid MasterRegistry-->
+        <DBServer>192.168.7.105</DBServer>
+        <DBPort>10000</DBPort>
+    </ICEServer>
+    <ICEServer>
+        <!--对应IceGrid BackupRegistry-->
+        <DBServer>192.168.7.107</DBServer>
+        <DBPort>10001</DBPort>
+    </ICEServer>
+
+    <ProcessList>
+        <ServiceProcess>
+            <ProcessName>service</ProcessName>
+            <ListenList>
+                <Listen>
+                    <Addr>0</Addr>
+                    <Protocol>TCP</Protocol>
+                    <Port>1089</Port>
+                </Listen>
+                <Listen>
+                    <Addr>0</Addr>
+                    <Protocol>UDP</Protocol>
+                    <Port>1089</Port>
+                </Listen>
+            </ListenList>
+
+            <Service>
+                <Guid>{F42098BF-E820-4881-97C3-27A34B16D20A}</Guid>
+                <Name>av_service</Name>
+                <Priority>3</Priority>
+                <ApplicationID>2</ApplicationID>
+                <Config>
+                    <!-- 实例分组ID（0：非主实例组；1：主实例组-->
+                    <InstanceGroupID>1</InstanceGroupID>
+                    <ServiceInstanceID>av_instance_1</ServiceInstanceID>
+                    <ServiceInstancePassword>av_instance_fsp</ServiceInstancePassword>
+                    <ManagerServiceIPv4Addr>TCP:192.168.7.106:1089</ManagerServiceIPv4Addr>
+                    <ServiceAddress>TCP:192.168.153.129:1089;UDP:192.168.153.129:1089</ServiceAddress>
+                    <AdaptorAddress>TCP:192.168.153.129:1089;UDP:192.168.153.129:1089</AdaptorAddress>
+
+                    <!--是否使能音频编码，默认关，0:否，1:是-->
+                    <ForbidAudioEncoding>0</ForbidAudioEncoding>
+                    <ForceAVMix>1</ForceAVMix>
+                    <!-- 与manager_service的连接断开后的重连间隔（单位：毫秒）-->
+                    <ReconnectionInterval>1000</ReconnectionInterval>
+                    <!-- 系统负载信息上报时间间隔（单位：毫秒）-->
+                    <ReportingStateInterval>10000</ReportingStateInterval>
+                    <!-- 日志系统信息写入时间间隔（单位：毫秒）-->
+                    <WriteLogSysInfoInterval>10000</WriteLogSysInfoInterval>
+                    <!-- 流量过载阈值（单位：kb/s -->
+                    <FlowrateOverloadThreshold>1024000</FlowrateOverloadThreshold>
+                </Config>
+            </Service>
+
+            <Service>
+                <Guid>{5AED55B8-2046-4026-80DF-93DA593F6D27}</Guid>
+                <Name>av_adaptor</Name>
+                <Priority>4</Priority>
+                <ApplicationID>1</ApplicationID>
+                <Config>
+                    <!-- AV Service连接信息 -->
+                    <ServiceAddress>TCP:192.168.153.129:1089;UDP:192.168.153.129:1089</ServiceAddress>
+                </Config>
+            </Service>
+
+        </ServiceProcess>
+    </ProcessList>
+</Root>

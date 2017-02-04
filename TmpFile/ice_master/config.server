@@ -1,0 +1,16 @@
+#MySQL数据库连接信息
+[DBServer]
+ip=192.168.153.129
+port=10000
+db=fsp_sss_db
+user=root
+password=Pass@1234
+
+#线程池配置信息
+[ThreadPool]
+num=10
+
+[IceGrid]
+#YYY.YYY.YYY.YYY	本机IP地址
+#yyyy				监听端口（ICE客户端连接此端口，防火墙应开放）
+AdapterEndpoints=default -h 192.168.153.129 -p 10001
