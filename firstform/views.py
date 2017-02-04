@@ -17,28 +17,6 @@ def hello(request):
 
 def search(request):
         request.encoding='utf-8'
-        # if 'ice_master' in request.GET:
-        #     ice_master = request.GET['ice_master'].encode('utf-8')
-        # elif 'ice_replica' in request.GET:
-        #     ice_replica = request.GET['ice_replica'].encode('utf-8')
-        # elif 'manager' in request.GET:
-        #     manager = request.GET['manager'].encode('utf-8')
-        # elif 'access1' in request.GET:
-        #     access1 = request.GET['access1'].encode('utf-8')
-        # elif 'access2' in request.GET:
-        #     access2 = request.GET['access2'].encode('utf-8')
-        # elif 'nginx' in request.GET:
-        #     nginx =request.GET['nginx'].encode('utf-8')
-        # elif 'av' in request.GET:
-        #     av =request.GET['av'].encode('utf-8')
-        # elif 'vnc' in request.GET:
-        #     vnc =request.GET['vnc'].encode('utf-8')
-        # elif 'whiteboard' in request.GET:
-        #     whiteboard =request.GET['whiteboard'].encode('utf-8')
-        #
-        # else:
-        #     message = '你提交了空表单'
-
         ice_master = request.GET['myicemaster'].encode('utf-8')
         ice_replica = request.GET['ice_replica'].encode('utf-8')
         manager = request.GET['manager'].encode('utf-8')
@@ -49,7 +27,6 @@ def search(request):
         vnc =request.GET['vnc'].encode('utf-8')
         whiteboard =request.GET['whiteboard'].encode('utf-8')
         msg = {}
-
         msg['ice_master']=ice_master
         msg['ice_replica']=ice_replica
         msg['manager']=manager
@@ -228,7 +205,6 @@ def search(request):
         # upload file
         logging.info("start to upload access config file")
         b.transferAccessFile(hostname, port, username, password, basePath, "Y")
-        print "finished upload access config file"
         logging.info("start to upload av config file")
         b.transferAvFile(hostname, port, username, password, basePath, "Y")
         logging.info("start to upload ice_master config file")
@@ -268,11 +244,11 @@ def search(request):
 
 
 
-        return render(request,'firstform/search.html',{'confInfo':msg})
+        return render(request,'firstform/result.html',{'confInfo':msg})
         # return HttpResponse(message)
 
 def search_form(request):
-        return render(request,'firstform/search_form.html')
+        return render(request,'firstform/deployinfo.html')
 
 
 # 接收POST请求数据

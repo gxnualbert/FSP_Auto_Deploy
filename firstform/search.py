@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response
 
 # 表单
 def search_form(request):
-	    return render_to_response('firstform/search_form.html')
+	    return render_to_response('firstform/deployinfo.html')
 
 # 接收请求数据
 def search(request):
@@ -17,4 +17,4 @@ def search(request):
             message = '你提交了空表单'
         # return HttpResponse(message)
         msg={"schKey":message}
-        return render(request,'firstform/search.html',msg)
+        return render(request,'firstform/result.html',msg)
