@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search - w3cschool.cc</title>
+</head>
+<body>
+<!--<form action="/myform/search/" method="get">-->
+        <!--<input type="text" name="q">-->
+        <!--<input type="text" name="1">-->
+        <!--<input type="text" name="2">-->
+        <!--<input type="text" name="3">-->
+
+
+        <!--<input type="submit" value="Search">-->
+    <!--</form>-->
+
+
+<p>请输入你的部署信息：</p>
+		<form action="/myform/search/" method="get">
+			Ice_Master&nbspIP: <input type="text"  list="IP_list" name="ice_master">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			Ice_Replica&nbspIP:<input type="text" list="IP_list" name="ice_replica">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			Manager&nbsp&nbsp&nbspIP:<input type="text" list="IP_list" name="manager">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			Access&nbsp&nbsp&nbspIP1:<input type="text" list="IP_list" name="access1">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			Access     &nbsp IP2:<input type="text" list="IP_list" name="access2">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			Nginx       &nbsp&nbspIP:<input type="text" list="IP_list" name="nginx">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			AV          &nbsp&nbsp&nbsp&nbspIP:<input type="text" list="IP_list" name="av">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			VNC         &nbsp&nbsp&nbsp&nbspIP:<input type="text" list="IP_list" name="vnc">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			WhiteBoard  IP:<input type="text" list="IP_list" name="whiteboard">    Port：<input type="text"  list="Port_list" name="ice_master" size="5"><br><br>
+			<input type="submit" value="开始部署"/>
+		</form>
+
+		<datalist id="IP_list">
+			<option  value="192.168.7.105" />
+			<option  value="192.168.7.106" />
+			<option  value="192.168.7.107" />
+			<option  value="192.168.7.108" />
+			<option  value="192.168.7.109" />
+		</datalist>
+		<datalist id="Port_list">
+			<option  value="1089" />
+			<option  value="1090" />
+			<option  value="1091" />
+			<option  value="1092" />
+			<option  value="1093" />
+			<option  value="1094" />
+			<option  value="1095" />
+			<option  value="1096" />
+			<option  value="1097" />
+			<option  value="1098" />
+			<option  value="1099" />
+		</datalist>
+
+</body>
+</html>
