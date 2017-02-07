@@ -1,17 +1,17 @@
 <!--
-    XXX.XXX.XXX.XXX             IceGrid Master节点的IP
-    xxxx                        IceGrid Master节点的端口
-    YYY.YYY.YYY.YYY             IceGrid Replica节点的IP
-    yyyy                        IceGrid Replica节点的端口
-    whiteboard_instance_id      whiteboard Service实例ID
-    whiteboard_instance_passwd  whiteboard Service实例密码
+    XXX.XXX.XXX.XXX     IceGrid Master节点的IP
+    xxxx                IceGrid Master节点的端口
+    YYY.YYY.YYY.YYY     IceGrid Replica节点的IP
+    yyyy                IceGrid Replica节点的端口
+    vnc_instance_id     data_sync Service实例ID
+    vnc_instance_passwd data_sync Service实例密码
 
-    AAA.AAA.AAA.AAA             Manager Service实例的IP
-    aaaa                        Manager Service实例的端口
-    BBB.BBB.BBB.BBB             Whiteboard Service/Adaptor实例的IP
-    bbbb                        Whiteboard Service/Adaptor实例的端口
+    AAA.AAA.AAA.AAA     Manager Service实例的IP
+    aaaa                Manager Service实例的端口
+    BBB.BBB.BBB.BBB     data_sync Service/Adaptor实例的IP
+    bbbb                data_sync Service/Adaptor实例的端口
 
-    注意：Whiteboard Service/Adaptor只需要配置TCP地址
+    注意：data_sync Service/Adaptor只需要配置TCP地址
 --><Root>
     <NATIPList>
         <NATIP/>
@@ -27,7 +27,7 @@
     </ICEServer>
     <ICEServer>
         <!--对应IceGrid BackupRegistry-->
-        <DBServer>192.168.7.107</DBServer>
+        <DBServer>192.168.7.106</DBServer>
         <DBPort>10001</DBPort>
     </ICEServer>
 
@@ -54,9 +54,9 @@
                 <Config>
                     <!-- 实例分组ID（0：非主实例组；1：主实例组-->
                     <InstanceGroupID>1</InstanceGroupID>
-                    <ManagerServiceIPv4Addr>TCP:192.168.7.106:1089</ManagerServiceIPv4Addr>
-                    <ServiceAddress>TCP:192.168.7.107:1093</ServiceAddress>
-                    <AdaptorAddress>TCP:192.168.7.107:1093</AdaptorAddress>
+                    <ManagerServiceIPv4Addr>TCP:192.168.7.105:1089</ManagerServiceIPv4Addr>
+                    <ServiceAddress>TCP:192.168.7.108:1093</ServiceAddress>
+                    <AdaptorAddress>TCP:192.168.7.108:1093</AdaptorAddress>
                     <ServiceInstanceID>white_board_instance_1</ServiceInstanceID>
                     <ServiceInstancePassword>white_board_instance_fsp</ServiceInstancePassword>
 
@@ -76,7 +76,7 @@
                 <ApplicationID>21</ApplicationID>
                 <Config>
                     <!-- VNC Service连接信息 -->
-                    <ServiceAddress>TCP:192.168.7.107:1093</ServiceAddress>
+                    <ServiceAddress>TCP:192.168.7.108:1093</ServiceAddress>
                 </Config>
             </Service>
 

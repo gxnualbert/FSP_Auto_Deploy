@@ -27,7 +27,7 @@
     </ICEServer>
     <ICEServer>
         <!--对应IceGrid BackupRegistry-->
-        <DBServer>192.168.7.107</DBServer>
+        <DBServer>192.168.7.106</DBServer>
         <DBPort>10001</DBPort>
     </ICEServer>
 
@@ -54,10 +54,10 @@
                 <ApplicationID>12</ApplicationID>
                 <Config>
                     <!-- 实例分组ID（0：非主实例组；1：主实例组-->
-                    <InstanceGroupID>0</InstanceGroupID>
-                    <ManagerServiceIPv4Addr>TCP:192.168.7.106:1089</ManagerServiceIPv4Addr>
-                    <ServiceAddress>TCP:192.168.7.106:1091;UDP:192.168.7.106:1091</ServiceAddress>
-                    <AdaptorAddress>TCP:192.168.7.106:1091;UDP:192.168.7.106:1091</AdaptorAddress>
+                    <InstanceGroupID>1</InstanceGroupID>
+                    <ManagerServiceIPv4Addr>TCP:192.168.7.105:1089</ManagerServiceIPv4Addr>
+                    <ServiceAddress>TCP:192.168.7.108:1091;UDP:192.168.7.108:1091</ServiceAddress>
+                    <AdaptorAddress>TCP:192.168.7.108:1091;UDP:192.168.7.108:1091</AdaptorAddress>
                     <ServiceInstanceID>vnc_instance_1</ServiceInstanceID>
                     <ServiceInstancePassword>vnc_instance_fsp</ServiceInstancePassword>
 
@@ -77,7 +77,7 @@
                 <ApplicationID>11</ApplicationID>
                 <Config>
                     <!-- VNC Service连接信息 -->
-                    <ServiceAddress>TCP:192.168.7.106:1091;UDP:192.168.7.106:1091</ServiceAddress>
+                    <ServiceAddress>TCP:192.168.7.108:1091;UDP:192.168.7.108:1091</ServiceAddress>
                 </Config>
             </Service>
 

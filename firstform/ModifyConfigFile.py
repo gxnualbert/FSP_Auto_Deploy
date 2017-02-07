@@ -1,9 +1,10 @@
-# -*- coding: UTF-8 -*-
-
-import time
+# -*- coding:utf-8 -*-
 import datetime
 import lxml.etree
 import os
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class MofidyFSPFile(object):
 
@@ -190,7 +191,7 @@ class MofidyFSPFile(object):
         # config.server
         try:
             self.modifyFile(filePath[2], "ip=", "XXX.XXX.XXX.XXX", configInfo["ICEMasterIP"])
-            self.modifyFile(filePath[2], "port=", "xxxx", configInfo["ICEMasterPort"])
+            self.modifyFile(filePath[2], "port=", "xxxx", configInfo["dbPort"])
             self.modifyFile(filePath[2], "db=", "数据库实例名", configInfo["dbName"])
             self.modifyFile(filePath[2], "user=", "用户名", configInfo["dbUser"])
             self.modifyFile(filePath[2], "password=", "用户密码", configInfo["dbPwd"])

@@ -17,7 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^myform/', include('firstform.urls')),
+    url(r'^fsp/', include('firstform.urls')),
     url(r'^admin/', admin.site.urls),
 
 ]

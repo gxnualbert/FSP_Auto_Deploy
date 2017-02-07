@@ -18,7 +18,7 @@
     </ICEServer>
     <ICEServer>
         <!--对应IceGrid BackupRegistry-->
-        <DBServer>192.168.7.107</DBServer>
+        <DBServer>192.168.7.106</DBServer>
         <DBPort>10001</DBPort>
     </ICEServer>
 

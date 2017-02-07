@@ -6,7 +6,7 @@
 #
 # The IceGrid locator proxy.
 #
-Ice.Default.Locator=DBServiceIceGrid/Locator:default -h 192.168.153.129 -p 10000 -t 1000
+Ice.Default.Locator=DBServiceIceGrid/Locator:default -h 192.168.7.105 -p 10000 -t 1000
 
 #
 # IceGrid registry configuration.

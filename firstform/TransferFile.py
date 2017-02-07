@@ -1,4 +1,4 @@
-#coding:utf-8
+# -*- coding:utf-8 -*-
 import paramiko
 import os
 import shutil
@@ -18,6 +18,8 @@ class TransferFSPFile(object):
         stdin, stdout, stderr = s.exec_command(execmd)
         stdin.write("Y")  # Generally speaking, the first connection, need a simple interaction.
         print stdout.read()
+        # print stderr.read()
+
         s.close()
 
     @classmethod

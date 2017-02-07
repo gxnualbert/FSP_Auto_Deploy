@@ -1,0 +1,11 @@
+2017-02-07 09:12:57,176 - views.py:- start to install access
+2017-02-07 09:15:35,979 - views.py:- start to download access config file
+2017-02-07 09:15:36,520 - views.py:- start to download av config file
+2017-02-07 09:15:46,598 - views.py:- start to download ice_master config file
+2017-02-07 09:15:47,364 - views.py:- start to download ice_replica config file
+2017-02-07 09:15:48,099 - views.py:- start to download manager config file
+2017-02-07 09:15:48,348 - views.py:- start to download vnc config file
+2017-02-07 09:15:49,046 - views.py:- start to download white board config file
+2017-02-07 09:15:49,546 - views.py:- start to modify access config file
+2017-02-07 09:15:49,552 - views.py:- start to modify av config file
+2017-02-07 09:15:49,559 - views.py:- start to modify ice_master config file
