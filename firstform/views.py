@@ -7,10 +7,10 @@ from ModifyConfigFile import MofidyFSPFile as mfsp
 from StartService import StartService as ss
 from log import AddLog as log
 
-def hello(request):
+def home(request):
     question={'question':'i can not say it,update it'}
     # return render(request,'firstform/index.html',{'question': question['question']})
-    return render(request,'firstform/index.html',question)
+    return render(request,'firstform/index.html')
 def cleanup(request):
         return render(request, 'firstform/cleanup.html')
 
@@ -628,28 +628,42 @@ def search(request):
         return render(request,'firstform/result.html',info)
         # return HttpResponse(message)
 def deployv2(request):
-        return render(request, 'firstform/deployinfo_v2.html')
+        return render(request, 'firstform/InstallAllService.html')
 
 
 def installinfo(request):
         request.encoding = 'utf-8'
         machine1 = request.GET['machine1']
+        machine2 = request.GET['machine2']
+        machine3 = request.GET['machine3']
+        machine4 = request.GET['machine4']
+        machine5 = request.GET['machine5']
+
         servicelist1 = request.GET['servicelist1']
+        servicelist2 = request.GET['servicelist2']
+        servicelist3 = request.GET['servicelist3']
+        servicelist4 = request.GET['servicelist4']
+        servicelist5 = request.GET['servicelist5']
+
+        portlist1=request.GET['portlist1']
+        portlist2=request.GET['portlist2']
+        portlist3=request.GET['portlist3']
+        portlist4=request.GET['portlist4']
+        portlist5=request.GET['portlist5']
+
+
 
         print machine1
         print "service list is ",servicelist1
-        # dbPort = request.GET['dbport']
-        # dbName = request.GET['tablename']
-        # dbUser = request.GET['username']
-        # dbPwd = request.GET['pwd']
-        # nginxIP = request.GET['nginx']
 
-        return render(request,'firstform/deployinfo_v2.html')
+        return render(request,'firstform/InstallAllService.html')
 
 def search_form(request):
         return render(request,'firstform/deployinfo.html')
 
 
+def singleService(request):
+        return render(request, 'firstform/InstallSingleService.html')
 
 # def search_post(request):
 # 	ctx ={}

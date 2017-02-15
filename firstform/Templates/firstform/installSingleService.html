@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>安装单个服务</title>
+</head>
+<body>
+
+
+
+<br/>
+<p>下载安装包：</p>
+		<form action="/fsp/installinfo/" method="get">
+            FSP 安装包URL：<input type="text" name="pkgURL" size="150"><br><br>
+            机器IP： <input type="text"  list="IP_list" name="singleIP"><br><br>
+
+			<input type="submit" value="下载安装包" />
+
+		</form>
+
+
+<br><br>
+        <form>
+
+            安装单个服务：<br><br>
+            机器IP: <input type="text"  list="IP_list" name="machine1">    安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist1" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+            <input type="submit" value="开始安装" />
+        </form>
+		<datalist id="IP_list">
+			<option  value="192.168.7.105" />
+			<option  value="192.168.7.106" />
+			<option  value="192.168.7.107" />
+			<option  value="192.168.7.108" />
+			<option  value="192.168.7.109" />
+		</datalist>
+
+
+</body>
+</html>
