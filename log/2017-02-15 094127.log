@@ -1,0 +1,70 @@
+2017-02-15 09:42:35,644 - views.py:- start to install access
+2017-02-15 09:43:51,026 - views.py:- start to download access1 config file,ip is 192.168.7.106
+2017-02-15 09:43:51,273 - views.py:- start to modify access1 config file
+2017-02-15 09:43:51,279 - views.py:- start to upload access1 config file ip is 192.168.7.106
+2017-02-15 09:43:51,536 - views.py:- start to download access2 config file
+2017-02-15 09:43:51,773 - views.py:- start to modify access2 config file
+2017-02-15 09:43:51,779 - views.py:- start to upload access2 config file
+2017-02-15 09:43:52,335 - views.py:- start to download av1 config file
+2017-02-15 09:43:53,157 - views.py:- start to modify av1 config file
+2017-02-15 09:43:53,163 - views.py:- start to upload av1 config file
+2017-02-15 09:43:53,404 - views.py:- start to download av2 config file
+2017-02-15 09:43:53,644 - views.py:- start to modify av2 config file
+2017-02-15 09:43:53,650 - views.py:- start to upload av2 config file
+2017-02-15 09:43:53,884 - views.py:- start to download av3 config file
+2017-02-15 09:43:54,164 - views.py:- start to modify av3 config file
+2017-02-15 09:43:54,171 - views.py:- start to upload av3 config file
+2017-02-15 09:43:54,404 - views.py:- start to download av4 config file
+2017-02-15 09:43:54,631 - views.py:- start to modify av4 config file
+2017-02-15 09:43:54,637 - views.py:- start to upload av4 config file
+2017-02-15 09:43:54,880 - views.py:- start to download av5 config file
+2017-02-15 09:43:55,088 - views.py:- start to modify av5 config file
+2017-02-15 09:43:55,095 - views.py:- start to upload av5 config file
+2017-02-15 09:43:55,638 - views.py:- start to download vnc1 config file
+2017-02-15 09:43:55,898 - views.py:- start to modify vnc1 config file
+2017-02-15 09:43:55,905 - views.py:- start to upload vnc1 config file
+2017-02-15 09:43:56,160 - views.py:- start to download vnc2 config file
+2017-02-15 09:43:56,401 - views.py:- start to modify vnc2 config file
+2017-02-15 09:43:56,405 - views.py:- start to upload vnc2 config file
+2017-02-15 09:43:56,638 - views.py:- start to download vnc3 config file
+2017-02-15 09:43:56,894 - views.py:- start to modify vnc3 config file
+2017-02-15 09:43:56,898 - views.py:- start to upload vnc3 config file
+2017-02-15 09:43:57,137 - views.py:- start to download vnc4 config file
+2017-02-15 09:43:57,381 - views.py:- start to modify vnc4 config file
+2017-02-15 09:43:57,388 - views.py:- start to upload vnc4 config file
+2017-02-15 09:43:57,634 - views.py:- start to download vnc5 config file
+2017-02-15 09:43:57,848 - views.py:- start to modify vnc5 config file
+2017-02-15 09:43:57,854 - views.py:- start to upload vnc5 config file
+2017-02-15 09:43:58,063 - views.py:- start to download white board1 config file
+2017-02-15 09:43:58,323 - views.py:- start to modify whiteboard1 config file
+2017-02-15 09:43:58,329 - views.py:- start to upload whiteboard1 config file
+2017-02-15 09:43:58,573 - views.py:- start to download white board2 config file
+2017-02-15 09:43:58,799 - views.py:- start to modify whiteboard config file
+2017-02-15 09:43:58,805 - views.py:- start to upload whiteboard2 config file
+2017-02-15 09:43:59,355 - views.py:- start to download white board3 config file
+2017-02-15 09:43:59,627 - views.py:- start to modify whiteboard3 config file
+2017-02-15 09:43:59,632 - views.py:- start to upload whiteboard3 config file
+2017-02-15 09:43:59,871 - views.py:- start to download white board4 config file
+2017-02-15 09:44:00,131 - views.py:- start to modify whiteboard4 config file
+2017-02-15 09:44:00,138 - views.py:- start to upload whiteboard4 config file
+2017-02-15 09:44:00,388 - views.py:- start to download white board5 config file
+2017-02-15 09:44:00,611 - views.py:- start to modify whiteboard5 config file
+2017-02-15 09:44:00,617 - views.py:- start to upload whiteboard5 config file
+2017-02-15 09:44:00,851 - views.py:- start to download ice_master config file
+2017-02-15 09:44:01,569 - views.py:- start to modify ice_master config file
+2017-02-15 09:44:01,592 - views.py:- start to upload ice_master config file
+2017-02-15 09:44:02,342 - views.py:- start to download ice_replica config file
+2017-02-15 09:44:03,065 - views.py:- start to modify ice_replica config file
+2017-02-15 09:44:03,086 - views.py:- start to upload ice_replica config file
+2017-02-15 09:44:04,098 - views.py:- start to download manager config file
+2017-02-15 09:44:04,344 - views.py:- start to modify manager config file
+2017-02-15 09:44:04,349 - views.py:- start to upload manager config file
+2017-02-15 09:44:04,572 - views.py:- start to modify nginx config file
+2017-02-15 09:44:04,582 - views.py:- start access service
+2017-02-15 09:44:04,858 - views.py:- start av service
+2017-02-15 09:44:06,226 - views.py:- start ice_master service
+2017-02-15 09:44:07,349 - views.py:- start ice_replica service
+2017-02-15 09:44:09,020 - views.py:- start manager service
+2017-02-15 09:44:09,296 - views.py:- start nginx service
+2017-02-15 09:44:09,688 - views.py:- start vnc service
+2017-02-15 09:44:10,631 - views.py:- start whiteboard service

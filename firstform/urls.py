@@ -6,6 +6,8 @@ urlpatterns = [
     url(r'^index/$',views.hello),
     url(r'^deployinfo/$',views.search_form),
     url(r'^search/$',views.search),
+    url(r'^sch2/$',views.deployv2),
+    url(r'^installinfo/$',views.installinfo),
     url(r'^cleanup/$',views.cleanup),
     url(r'^cleanaction/$',views.cleanaction),
 

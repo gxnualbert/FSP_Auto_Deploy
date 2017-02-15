@@ -1,7 +1,7 @@
 #MySQL数据库连接信息
 [DBServer]
 ip=192.168.7.105
-port=10000
+port=3306
 db=fsp_sss
 user=root
 password=123456

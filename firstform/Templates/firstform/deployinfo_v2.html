@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部署页面第二版</title>
+</head>
+<body>
+
+
+
+<br/>
+<p>安装包信息：</p>
+		<form action="/fsp/installinfo/" method="get">
+            FSP 安装包URL：<input type="text" name="pkgURL" size="150"><br><br>
+			部署信息：<br><br>
+            机器IP1: <input type="text"  list="IP_list" name="machine1">    安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist1" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+            机器IP2: <input type="text"  list="IP_list" name="machine2">    安装的服务(以逗号分隔)：<input type="text" name="servicelist2" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist2" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+            机器IP3: <input type="text"  list="IP_list" name="machine3">    安装的服务(以逗号分隔)：<input type="text" name="servicelist3" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist3" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+            机器IP4: <input type="text"  list="IP_list" name="machine4">    安装的服务(以逗号分隔)：<input type="text" name="servicelist4" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist4" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+            机器IP5: <input type="text"  list="IP_list" name="machine5">    安装的服务(以逗号分隔)：<input type="text" name="servicelist5" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist5" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+
+            <input type="button" id="btn_add" value="增加行"><br><br><br><br>
+
+			<input type="submit" value="开始部署" />
+
+		</form>
+
+		<datalist id="IP_list">
+			<option  value="192.168.7.105" />
+			<option  value="192.168.7.106" />
+			<option  value="192.168.7.107" />
+			<option  value="192.168.7.108" />
+			<option  value="192.168.7.109" />
+		</datalist>
+
+
+</body>
+</html>

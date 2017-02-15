@@ -88,17 +88,19 @@ def search(request):
         accessPort2 = "10001"
         ListenPort = "22222"
 
-        ACTCPPort = "1089"
-        ACUDPPort = "1089"
-        ACServiceInstanceID = "access_instance_1"
-        ACServiceInstancePassword = "access_instance_fsp"
+        accessTCPPort1 = "1089"
+        accessUDPPort1 = "1089"
+        accessServiceInstanceID1 = "access_instance_1"
+        accessServiceInstancePassword1 = "access_instance_fsp"
 
 
         HTTPServiceListenPort = "3000"
 
-        AccessMasterIP = "192.168.153.128"
-        AccessMasterPort = "1089"
-        HTTP2ServicePort = "3000"
+
+        accessTCPPort2 = "1089"
+        accessUDPPort2 = "1089"
+        accessServiceInstanceID2 = "access_instance_2"
+        accessServiceInstancePassword2 = "access_instance_fsp"
 
         # ICEMaster config Info
         ICEMasterIP = request.GET['myicemaster']
@@ -299,8 +301,9 @@ def search(request):
         b.installAccess(accessIP2, port, username, password, sss)
 
         # fundamental service
-
+        print "av1"
         b.installAv(AVIP1,port,username, password, sss)
+
         b.installAv(AVIP2,port,username, password, sss)
         b.installAv(AVIP3,port,username, password, sss)
         b.installAv(AVIP4,port,username, password, sss)
@@ -328,97 +331,273 @@ def search(request):
         #because there are many av,vnc,whiteboard conf files, but the program only have one folder,like av,vnc, so we
         # need to download the file, then modify it, and the upload it.
         myMofify = mfsp()
-        # download access config file
-        logging.info("start to download access config file")
+        # download access1 config file
+        logging.info("start to download access1 config file,ip is %s",accessIP1)
         b.transferAccessFile(accessIP1, port, username, password, basePath)
 
-        logging.info("start to modify access config file")
-        myMofify.modifyAccessConfigFile(ACTCPPort, ACUDPPort, ACServiceInstanceID, ACServiceInstancePassword,
+        logging.info("start to modify access1 config file")
+        myMofify.modifyAccessConfigFile(accessTCPPort1, accessUDPPort1, accessServiceInstanceID1, accessServiceInstancePassword1,
                                         HTTPServiceListenPort, ManagerServiceIPv4Addr, ICEMasterIP, ICEMasterPort,
                                         ICEReplicaIP, ICEReplicaPort)
 
-        logging.info("start to upload access config file")
+        logging.info("start to upload access1 config file ip is %s",accessIP1)
         b.transferAccessFile(accessIP1, port, username, password, basePath, "Y")
 
+        #download access2 config file, modify, and upload it
 
-        logging.info("start to download av config file")
+        logging.info("start to download access2 config file")
+        b.transferAccessFile(accessIP2, port, username, password, basePath)
+
+        logging.info("start to modify access2 config file")
+        myMofify.modifyAccessConfigFile(accessTCPPort2, accessUDPPort2, accessServiceInstanceID2,
+                                        accessServiceInstancePassword2,
+                                        HTTPServiceListenPort, ManagerServiceIPv4Addr, ICEMasterIP, ICEMasterPort,
+                                        ICEReplicaIP, ICEReplicaPort)
+
+        logging.info("start to upload access2 config file")
+        b.transferAccessFile(accessIP2, port, username, password, basePath, "Y")
+
+        # download av1 config file, modify, and upload it
+
+        logging.info("start to download av1 config file")
         b.transferAvFile(AVIP1, port, username, password, basePath)
 
+        logging.info("start to modify av1 config file")
+        myMofify.modifyAvConfigFile(AVIP1, AVTCPPort1, AVUDPort1, AVInstanceGroupID1, AVServiceInstanceID1,
+                                    AVServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr)
+
+        logging.info("start to upload av1 config file")
+        b.transferAvFile(AVIP1, port, username, password, basePath, "Y")
+
+        # download av2 config file, modify, and upload it
+
+        logging.info("start to download av2 config file")
+        b.transferAvFile(AVIP2, port, username, password, basePath)
+
+        logging.info("start to modify av2 config file")
+        myMofify.modifyAvConfigFile(AVIP2, AVTCPPort2, AVUDPort2, AVInstanceGroupID2, AVServiceInstanceID2,
+                                    AVServiceInstancePassword2, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr)
+
+        logging.info("start to upload av2 config file")
+        b.transferAvFile(AVIP2, port, username, password, basePath, "Y")
+
+        # download av3 config file, modify, and upload it
+
+        logging.info("start to download av3 config file")
+        b.transferAvFile(AVIP3, port, username, password, basePath)
+
+        logging.info("start to modify av3 config file")
+        myMofify.modifyAvConfigFile(AVIP3, AVTCPPort3, AVUDPort3, AVInstanceGroupID3, AVServiceInstanceID3,
+                                    AVServiceInstancePassword3, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr)
+
+        logging.info("start to upload av3 config file")
+        b.transferAvFile(AVIP3, port, username, password, basePath, "Y")
+        
+        # download av4 config file, modify, and upload it
+
+        logging.info("start to download av4 config file")
+        b.transferAvFile(AVIP4, port, username, password, basePath)
+
+        logging.info("start to modify av4 config file")
+        myMofify.modifyAvConfigFile(AVIP4, AVTCPPort4, AVUDPort4, AVInstanceGroupID4, AVServiceInstanceID4,
+                                    AVServiceInstancePassword4, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr)
+
+        logging.info("start to upload av4 config file")
+        b.transferAvFile(AVIP4, port, username, password, basePath, "Y")
+        
+        # download av5 config file, modify, and upload it
+
+        logging.info("start to download av5 config file")
+        b.transferAvFile(AVIP5, port, username, password, basePath)
+
+        logging.info("start to modify av5 config file")
+        myMofify.modifyAvConfigFile(AVIP5, AVTCPPort5, AVUDPort5, AVInstanceGroupID5, AVServiceInstanceID5,
+                                    AVServiceInstancePassword5, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr)
+
+        logging.info("start to upload av5 config file")
+        b.transferAvFile(AVIP5, port, username, password, basePath, "Y")
+
+        # download vnc1 config file, modify, and upload it
+        logging.info("start to download vnc1 config file")
+        b.transferVncFile(VNCIP1, port, username, password, basePath)
+
+        logging.info("start to modify vnc1 config file")
+        myMofify.modifyVncConfigFile(VNCIP1, VNCPort1, VNCTCPPort1, VNCUDPPort1, VNCInstanceGroupID1,
+                                     VNCServiceInstanceID1,
+                                     VNCServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload vnc1 config file")
+        b.transferVncFile(VNCIP1, port, username, password, basePath, "Y")
+        
+        # download vnc2 config file, modify, and upload it
+        logging.info("start to download vnc2 config file")
+        b.transferVncFile(VNCIP2, port, username, password, basePath)
+
+        logging.info("start to modify vnc2 config file")
+        myMofify.modifyVncConfigFile(VNCIP2, VNCPort2, VNCTCPPort2, VNCUDPPort2, VNCInstanceGroupID2,
+                                     VNCServiceInstanceID2,
+                                     VNCServiceInstancePassword2, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload vnc2 config file")
+        b.transferVncFile(VNCIP2, port, username, password, basePath, "Y")
+        
+        # download vnc3 config file, modify, and upload it
+        logging.info("start to download vnc3 config file")
+        b.transferVncFile(VNCIP3, port, username, password, basePath)
+
+        logging.info("start to modify vnc3 config file")
+        myMofify.modifyVncConfigFile(VNCIP3, VNCPort3, VNCTCPPort3, VNCUDPPort3, VNCInstanceGroupID3,
+                                     VNCServiceInstanceID3,
+                                     VNCServiceInstancePassword3, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload vnc3 config file")
+        b.transferVncFile(VNCIP3, port, username, password, basePath, "Y")
+        
+        # download vnc4 config file, modify, and upload it
+        logging.info("start to download vnc4 config file")
+        b.transferVncFile(VNCIP4, port, username, password, basePath)
+
+        logging.info("start to modify vnc4 config file")
+        myMofify.modifyVncConfigFile(VNCIP4, VNCPort4, VNCTCPPort4, VNCUDPPort4, VNCInstanceGroupID4,
+                                     VNCServiceInstanceID4,
+                                     VNCServiceInstancePassword4, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload vnc4 config file")
+        b.transferVncFile(VNCIP4, port, username, password, basePath, "Y")
+        
+        # download vnc5 config file, modify, and upload it
+        logging.info("start to download vnc5 config file")
+        b.transferVncFile(VNCIP5, port, username, password, basePath)
+
+        logging.info("start to modify vnc5 config file")
+        myMofify.modifyVncConfigFile(VNCIP5, VNCPort5, VNCTCPPort5, VNCUDPPort5, VNCInstanceGroupID5,
+                                     VNCServiceInstanceID5,
+                                     VNCServiceInstancePassword5, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload vnc5 config file")
+        b.transferVncFile(VNCIP5, port, username, password, basePath, "Y")
+
+        # download whiteboard1 config file, modify, and upload it
+
+        logging.info("start to download white board1 config file")
+        b.transferWBFile(WhiteBoardIP1, port, username, password, basePath)
+
+        logging.info("start to modify whiteboard1 config file")
+        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP1, WhiteBoardPort1, WBTCPPort1, WBUDPort1, WBInstanceGroupID1,
+                                            WBServiceInstanceID1, WBServiceInstancePassword1, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload whiteboard1 config file")
+        b.transferWBFile(WhiteBoardIP1, port, username, password, basePath, "Y")
+
+        # download whiteboard2 config file, modify, and upload it
+
+        logging.info("start to download white board2 config file")
+        b.transferWBFile(WhiteBoardIP2, port, username, password, basePath)
+
+        logging.info("start to modify whiteboard config file")
+        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP2, WhiteBoardPort2, WBTCPPort2, WBUDPort2, WBInstanceGroupID2,
+                                            WBServiceInstanceID2, WBServiceInstancePassword2, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload whiteboard2 config file")
+        b.transferWBFile(WhiteBoardIP2, port, username, password, basePath, "Y")
+        
+        # download whiteboard3 config file, modify, and upload it
+
+        logging.info("start to download white board3 config file")
+        b.transferWBFile(WhiteBoardIP3, port, username, password, basePath)
+
+        logging.info("start to modify whiteboard3 config file")
+        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP3, WhiteBoardPort3, WBTCPPort3, WBUDPort3, WBInstanceGroupID3,
+                                            WBServiceInstanceID3, WBServiceInstancePassword3, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload whiteboard3 config file")
+        b.transferWBFile(WhiteBoardIP3, port, username, password, basePath, "Y")
+        
+        # download whiteboard4 config file, modify, and upload it
+
+        logging.info("start to download white board4 config file")
+        b.transferWBFile(WhiteBoardIP4, port, username, password, basePath)
+
+        logging.info("start to modify whiteboard4 config file")
+        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP4, WhiteBoardPort4, WBTCPPort4, WBUDPort4, WBInstanceGroupID4,
+                                            WBServiceInstanceID4, WBServiceInstancePassword4, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload whiteboard4 config file")
+        b.transferWBFile(WhiteBoardIP4, port, username, password, basePath, "Y")
+        
+        # download whiteboard config file, modify, and upload it
+
+        logging.info("start to download white board5 config file")
+        b.transferWBFile(WhiteBoardIP5, port, username, password, basePath)
+
+        logging.info("start to modify whiteboard5 config file")
+        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP5, WhiteBoardPort5, WBTCPPort5, WBUDPort5, WBInstanceGroupID5,
+                                            WBServiceInstanceID5, WBServiceInstancePassword5, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
+
+        logging.info("start to upload whiteboard5 config file")
+        b.transferWBFile(WhiteBoardIP5, port, username, password, basePath, "Y")
+
+        # download ice_master config file, modify, and upload it
 
         logging.info("start to download ice_master config file")
         b.transferMasterFile(ICEMasterIP, port, username, password, basePath)
-
-
-        logging.info("start to download ice_replica config file")
-        b.transferReplicaFile(ICEReplicaIP, port, username, password, basePath)
-
-
-        logging.info("start to download manager config file")
-        b.transferManagerFile(ManagerIP, port, username, password, basePath)
-
-
-        logging.info("start to download vnc config file")
-        b.transferVncFile(VNCIP1, port, username, password, basePath)
-
-
-        logging.info("start to download white board config file")
-        b.transferWBFile(WhiteBoardIP1, port, username, password, basePath)
-
-
-
-
-
-
-        logging.info("start to modify av config file")
-        myMofify.modifyAvConfigFile(AVIP1, AVTCPPort1, AVUDPort1, AVInstanceGroupID1, AVServiceInstanceID1,
-                                    AVServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort,
-                                    ManagerServiceIPv4Addr)
-
 
         logging.info("start to modify ice_master config file")
         myMofify.modifyIceMasterConfigFile(ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort, dbHost, dbPort,
                                            dbName, dbUser, dbPwd)
 
+        logging.info("start to upload ice_master config file")
+        b.transferMasterFile(ICEMasterIP, port, username, password, basePath, "Y")
+
+        # download ice_replica config file, modify, and upload it
+        logging.info("start to download ice_replica config file")
+        b.transferReplicaFile(ICEReplicaIP, port, username, password, basePath)
 
         logging.info("start to modify ice_replica config file")
         myMofify.modifyIceReplicaConfigFile(ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort, dbHost, dbPort,
                                             dbName, dbUser, dbPwd)
+        logging.info("start to upload ice_replica config file")
+        b.transferReplicaFile(ICEReplicaIP, port, username, password, basePath, "Y")
 
+        # download manager config file, modify, and upload it
+
+        logging.info("start to download manager config file")
+        b.transferManagerFile(ManagerIP, port, username, password, basePath)
 
         logging.info("start to modify manager config file")
         myMofify.modifyManagerConfigFile(ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort)
-
+        logging.info("start to upload manager config file")
+        b.transferManagerFile(ManagerIP, port, username, password, basePath, "Y")
 
 
         logging.info("start to modify nginx config file")
         myMofify.modifyNgixConfigFile(accessIP1, accessPort1, accessIP2, accessPort2, ListenPort)
 
-
-        logging.info("start to modify vnc config file")
-        myMofify.modifyVncConfigFile(VNCIP1, VNCPort1, VNCTCPPort1, VNCUDPPort1, VNCInstanceGroupID1, VNCServiceInstanceID1,
-                                     VNCServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
-                                     ICEReplicaPort, ManagerServiceIPv4Addr)
-
-
-        logging.info("start to modify whiteboard config file")
-        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP1, WhiteBoardPort1, WBTCPPort1, WBUDPort1, WBInstanceGroupID1,
-                                            WBServiceInstanceID1, WBServiceInstancePassword1, ICEMasterIP, ICEMasterPort,
-                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
-
-        # upload file
-
-        logging.info("start to upload av config file")
-        b.transferAvFile(AVIP1, port, username, password, basePath, "Y")
-        logging.info("start to upload ice_master config file")
-        b.transferMasterFile(ICEMasterIP, port, username, password, basePath, "Y")
-        logging.info("start to upload ice_replica config file")
-        b.transferReplicaFile(ICEReplicaIP, port, username, password, basePath, "Y")
-        logging.info("start to upload manager config file")
-        b.transferManagerFile(ManagerIP, port, username, password, basePath, "Y")
-        logging.info("start to upload vnc config file")
-        b.transferVncFile(VNCIP1, port, username, password, basePath, "Y")
-        logging.info("start to upload whiteboard config file")
-        b.transferWBFile(WhiteBoardIP1, port, username, password, basePath, "Y")
         # b.transferNginxFile(hostname, port, username, password,"Y")
 
         # Start Service
@@ -442,12 +621,30 @@ def search(request):
         t2 = datetime.datetime.now()
         print "end time: ", t2
 
-        print t2 - t1
+        tt= t2 - t1
 
+        info={"totaltime":tt}
 
-
-        return render(request,'firstform/result.html',{'confInfo':"ddddd"})
+        return render(request,'firstform/result.html',info)
         # return HttpResponse(message)
+def deployv2(request):
+        return render(request, 'firstform/deployinfo_v2.html')
+
+
+def installinfo(request):
+        request.encoding = 'utf-8'
+        machine1 = request.GET['machine1']
+        servicelist1 = request.GET['servicelist1']
+
+        print machine1
+        print "service list is ",servicelist1
+        # dbPort = request.GET['dbport']
+        # dbName = request.GET['tablename']
+        # dbUser = request.GET['username']
+        # dbPwd = request.GET['pwd']
+        # nginxIP = request.GET['nginx']
+
+        return render(request,'firstform/deployinfo_v2.html')
 
 def search_form(request):
         return render(request,'firstform/deployinfo.html')

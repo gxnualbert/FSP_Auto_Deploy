@@ -54,12 +54,12 @@
                 <ApplicationID>2</ApplicationID>
                 <Config>
                     <!-- 实例分组ID（0：非主实例组；1：主实例组-->
-                    <InstanceGroupID>1</InstanceGroupID>
-                    <ServiceInstanceID>av_instance_1</ServiceInstanceID>
+                    <InstanceGroupID>0</InstanceGroupID>
+                    <ServiceInstanceID>av_instance_5</ServiceInstanceID>
                     <ServiceInstancePassword>av_instance_fsp</ServiceInstancePassword>
                     <ManagerServiceIPv4Addr>TCP:192.168.7.105:1089</ManagerServiceIPv4Addr>
-                    <ServiceAddress>TCP:192.168.7.108:1089;UDP:192.168.7.108:1089</ServiceAddress>
-                    <AdaptorAddress>TCP:192.168.7.108:1089;UDP:192.168.7.108:1089</AdaptorAddress>
+                    <ServiceAddress>TCP:192.168.7.107:1089;UDP:192.168.7.107:1089</ServiceAddress>
+                    <AdaptorAddress>TCP:192.168.7.107:1089;UDP:192.168.7.107:1089</AdaptorAddress>
 
                     <!--是否使能音频编码，默认关，0:否，1:是-->
                     <ForbidAudioEncoding>0</ForbidAudioEncoding>
@@ -82,7 +82,7 @@
                 <ApplicationID>1</ApplicationID>
                 <Config>
                     <!-- AV Service连接信息 -->
-                    <ServiceAddress>TCP:192.168.7.108:1089;UDP:192.168.7.108:1089</ServiceAddress>
+                    <ServiceAddress>TCP:192.168.7.107:1089;UDP:192.168.7.107:1089</ServiceAddress>
                 </Config>
             </Service>
 

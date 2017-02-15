@@ -51,7 +51,7 @@
                 <ApplicationID>101</ApplicationID>
                 <Config>
                     <ManagerServiceIPv4Addr>TCP:192.168.7.105:1089</ManagerServiceIPv4Addr>
-                    <ServiceInstanceID>access_instance_1</ServiceInstanceID>
+                    <ServiceInstanceID>access_instance_2</ServiceInstanceID>
                     <ServiceInstancePassword>access_instance_fsp</ServiceInstancePassword>
                 </Config>
             </Service>

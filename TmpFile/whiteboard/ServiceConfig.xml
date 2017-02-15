@@ -53,11 +53,11 @@
                 <ApplicationID>22</ApplicationID>
                 <Config>
                     <!-- 实例分组ID（0：非主实例组；1：主实例组-->
-                    <InstanceGroupID>1</InstanceGroupID>
+                    <InstanceGroupID>0</InstanceGroupID>
                     <ManagerServiceIPv4Addr>TCP:192.168.7.105:1089</ManagerServiceIPv4Addr>
-                    <ServiceAddress>TCP:192.168.7.108:1093</ServiceAddress>
-                    <AdaptorAddress>TCP:192.168.7.108:1093</AdaptorAddress>
-                    <ServiceInstanceID>white_board_instance_1</ServiceInstanceID>
+                    <ServiceAddress>TCP:192.168.7.107:1093</ServiceAddress>
+                    <AdaptorAddress>TCP:192.168.7.107:1093</AdaptorAddress>
+                    <ServiceInstanceID>white_board_instance_5</ServiceInstanceID>
                     <ServiceInstancePassword>white_board_instance_fsp</ServiceInstancePassword>
 
                     <!-- 与manager_service的连接断开后的重连间隔（单位：毫秒）-->
@@ -76,7 +76,7 @@
                 <ApplicationID>21</ApplicationID>
                 <Config>
                     <!-- VNC Service连接信息 -->
-                    <ServiceAddress>TCP:192.168.7.108:1093</ServiceAddress>
+                    <ServiceAddress>TCP:192.168.7.107:1093</ServiceAddress>
                 </Config>
             </Service>
 
