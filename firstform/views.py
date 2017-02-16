@@ -7,6 +7,21 @@ from ModifyConfigFile import MofidyFSPFile as mfsp
 from StartService import StartService as ss
 from log import AddLog as log
 
+
+
+
+LINUX_USER='root'
+LINUX_PWD='123456'
+PORT=22
+
+b = tf
+myMofify = mfsp()
+
+tf.prepareFolder()
+
+logging = log.Log()
+
+
 def home(request):
     question={'question':'i can not say it,update it'}
     # return render(request,'firstform/index.html',{'question': question['question']})
@@ -14,6 +29,24 @@ def home(request):
 def cleanup(request):
         return render(request, 'firstform/cleanup.html')
 
+
+def dwnPkgTar(request):
+        request.encoding = 'utf-8'
+        pkgurl = request.GET['pkgURL']
+        singleip = request.GET['singleIP']
+
+        packageName = pkgurl.split("/")[-1]  # sss-1.2.2.1.tar.gz
+        sss = packageName.split(".tar")[0]
+
+        execmd = "cd /root\nwget " + pkgurl + "\ntar -xzvf " + packageName
+        # get the install package
+        print ("start to get package and tar it on %s", singleip)
+        b.sshclient_execmd(singleip, PORT, LINUX_USER, LINUX_PWD, execmd)
+        print "down successfully and tar it"
+        return render(request, 'firstform/downpackageandtar.html')
+
+def installSingleService():
+        pass
 def cleanaction(request):
         request.encoding = 'utf-8'
         cleanip1=request.GET['ip1']
@@ -68,7 +101,7 @@ def search(request):
         # #download package and install
 
         # '''download the package from the url'''
-        packageURL = "http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/263/artifact/sss-1.2.1.1.tar.gz"
+        packageURL = request.GET['pkgURL']
         packageName = packageURL.split("/")[-1]  # sss-1.2.2.1.tar.gz
         sss = packageName.split(".tar")[0]  # sss-1.2.2.1
 
@@ -243,11 +276,9 @@ def search(request):
 
 
 
-        b = tf
 
-        tf.prepareFolder()
 
-        logging = log.Log()
+
 
         execmd = "cd /root\nwget " + packageURL + "\ntar -xzvf " + packageName
         # get the install package
@@ -330,7 +361,7 @@ def search(request):
 
         #because there are many av,vnc,whiteboard conf files, but the program only have one folder,like av,vnc, so we
         # need to download the file, then modify it, and the upload it.
-        myMofify = mfsp()
+
         # download access1 config file
         logging.info("start to download access1 config file,ip is %s",accessIP1)
         b.transferAccessFile(accessIP1, port, username, password, basePath)
@@ -631,6 +662,7 @@ def deployv2(request):
         return render(request, 'firstform/installAllService.html')
 
 
+
 def installinfo(request):
         request.encoding = 'utf-8'
         machine1 = request.GET['machine1']
@@ -668,10 +700,3 @@ def singleService(request):
 def allService(request):
         return render(request, 'firstform/installAllService.html')
 
-
-# def search_post(request):
-# 	ctx ={}
-# 	ctx.update(csrf(request))
-# 	if request.POST:
-# 		ctx['rlt'] = request.POST['q']
-# 	return render(request, "post.html", ctx)

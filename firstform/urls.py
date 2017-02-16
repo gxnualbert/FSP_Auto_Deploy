@@ -14,6 +14,8 @@ urlpatterns = [
 
     # 单个服务
     url(r'^singleservice/$',views.singleService,name='singleservice'),
+    url(r'^dwnPkgTar/$',views.dwnPkgTar,name='dwnpkgtar'),
+
     #安装所有服务
     url(r'^allservice/$',views.allService,name='allservice'),
 
