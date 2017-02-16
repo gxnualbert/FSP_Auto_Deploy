@@ -628,7 +628,7 @@ def search(request):
         return render(request,'firstform/result.html',info)
         # return HttpResponse(message)
 def deployv2(request):
-        return render(request, 'firstform/InstallAllService.html')
+        return render(request, 'firstform/installAllService.html')
 
 
 def installinfo(request):
@@ -656,14 +656,18 @@ def installinfo(request):
         print machine1
         print "service list is ",servicelist1
 
-        return render(request,'firstform/InstallAllService.html')
+        return render(request,'firstform/installAllService.html')
 
 def search_form(request):
         return render(request,'firstform/deployinfo.html')
 
 
 def singleService(request):
-        return render(request, 'firstform/InstallSingleService.html')
+        return render(request, 'firstform/installSingleService.html')
+
+def allService(request):
+        return render(request, 'firstform/installAllService.html')
+
 
 # def search_post(request):
 # 	ctx ={}
