@@ -17,11 +17,10 @@ class TransferFSPFile(object):
         s.connect(hostname=hostname, port=port, username=username, password=password)
         stdin, stdout, stderr = s.exec_command(execmd)
         stdin.write("Y")  # Generally speaking, the first connection, need a simple interaction.
-        print stdout.read()
+        data = stdout.read()
         # print stderr.read()
-
         s.close()
-
+        return data
     @classmethod
     def mutipCmd(self,hostname, port, username, password, *execmd):
         paramiko.util.log_to_file("paramiko.log")

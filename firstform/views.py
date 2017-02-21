@@ -7,12 +7,13 @@ from ModifyConfigFile import MofidyFSPFile as mfsp
 from StartService import StartService as ss
 from log import AddLog as log
 
-
+from models import modleLogic as mLogic
 
 
 LINUX_USER='root'
 LINUX_PWD='123456'
 PORT=22
+#set a default package path:/root
 
 b = tf
 myMofify = mfsp()
@@ -20,6 +21,7 @@ myMofify = mfsp()
 tf.prepareFolder()
 
 logging = log.Log()
+
 
 
 def home(request):
@@ -30,23 +32,37 @@ def cleanup(request):
         return render(request, 'firstform/cleanup.html')
 
 
-def dwnPkgTar(request):
+def dwnPkgAndTar(request):
         request.encoding = 'utf-8'
         pkgurl = request.GET['pkgURL']
         singleip = request.GET['singleIP']
+        ipdic={}
+        ipdic[singleip]="invalid,ingnore this value"
+        mLogic.m_DownPkgAndTar(pkgurl,ipdic,PORT,LINUX_USER,LINUX_PWD)
+        # packageName = pkgurl.split("/")[-1]  # sss-1.2.2.1.tar.gz
+        # sss = packageName.split(".tar")[0]
+        #
+        # execmd = "cd /root\nwget " + pkgurl + "\ntar -xzvf " + packageName
+        # # get the install package
+        # print ("start to get package and tar it on %s", singleip)
+        # b.sshclient_execmd(singleip, PORT, LINUX_USER, LINUX_PWD, execmd)
+        # print "down successfully and tar it"
 
-        packageName = pkgurl.split("/")[-1]  # sss-1.2.2.1.tar.gz
-        sss = packageName.split(".tar")[0]
-
-        execmd = "cd /root\nwget " + pkgurl + "\ntar -xzvf " + packageName
-        # get the install package
-        print ("start to get package and tar it on %s", singleip)
-        b.sshclient_execmd(singleip, PORT, LINUX_USER, LINUX_PWD, execmd)
-        print "down successfully and tar it"
         return render(request, 'firstform/downpackageandtar.html')
 
-def installSingleService():
-        pass
+def submitSingleService(request):
+
+        request.encoding = 'utf-8'
+        machine1 = request.GET['machine1']
+        servicelist1 = request.GET['servicelist1']
+
+        # get the base path
+        sss=mLogic.m_BasePath(machine1,PORT,LINUX_USER,LINUX_PWD)
+        machine_service = {}
+        machine_service[machine1] = servicelist1
+        mLogic.m_InstallService(machine_service, sss, LINUX_USER, LINUX_PWD, PORT)
+        return render(request, 'firstform/installsuccessfully.html')
+
 def cleanaction(request):
         request.encoding = 'utf-8'
         cleanip1=request.GET['ip1']
@@ -663,8 +679,11 @@ def deployv2(request):
 
 
 
-def installinfo(request):
+def submitallserviceinfo(request):
         request.encoding = 'utf-8'
+        packageURL = request.GET['pkgURL']
+        packageName = packageURL.split("/")[-1]  # sss-1.2.2.1.tar.gz
+        sss = packageName.split(".tar")[0]  # sss-1.2.2.1
         machine1 = request.GET['machine1']
         machine2 = request.GET['machine2']
         machine3 = request.GET['machine3']
@@ -677,18 +696,19 @@ def installinfo(request):
         servicelist4 = request.GET['servicelist4']
         servicelist5 = request.GET['servicelist5']
 
-        portlist1=request.GET['portlist1']
-        portlist2=request.GET['portlist2']
-        portlist3=request.GET['portlist3']
-        portlist4=request.GET['portlist4']
-        portlist5=request.GET['portlist5']
+        #store the service info in dic, one machine two serveral service and serveral port
+        mac_service={}
+        mac_service[machine1]=servicelist1
+        mac_service[machine2]=servicelist2
+        mac_service[machine3]=servicelist3
+        mac_service[machine4]=servicelist4
+        mac_service[machine5]=servicelist5
 
+        mLogic.m_DownPkgAndTar(packageURL,mac_service,PORT,LINUX_USER,LINUX_PWD)
+        mLogic.m_InstallService(mac_service,sss,LINUX_USER,LINUX_PWD,PORT)
 
-
-        print machine1
-        print "service list is ",servicelist1
-
-        return render(request,'firstform/installAllService.html')
+        # mLogic.m_installallservice(mac_service,PORT,LINUX_USER,LINUX_PWD,sss)
+        return render(request,'firstform/installsuccessfully.html')
 
 def search_form(request):
         return render(request,'firstform/deployinfo.html')

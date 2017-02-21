@@ -10,22 +10,23 @@
 
 <br/>
 <p>下载安装包：</p>
-		<form action="/fsp/dwnPkgTar/" method="get">
-            FSP 安装包URL：<input type="text" name="pkgURL" size="150"><br><br>
+		<form action="/fsp/dwnPkgTar/" method="get" id="dwnpkg">
+            FSP 安装包URL：<input type="text" name="pkgURL" size="150" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>
             机器IP： <input type="text"  list="IP_list" name="singleIP"><br><br>
-
 			<input type="submit" value="下载安装包并解压" />
 
 		</form>
 
 
 <br><br>
-        <form>
+        <form action="/fsp/installSingleService/" method="get" id="singleform">
 
             安装单个服务：<br><br>
-            机器IP: <input type="text"  list="IP_list" name="machine1">    安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="45" value="av,vnc,whiteboard,access,mananger"> 端口号：<input type="text" name="portlist1" size="65" value="1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1099"><br><br>
+
+            机器IP: <input type="text"  list="IP_list" name="machine1">  安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>
             <input type="submit" value="开始安装" />
         </form>
+
 		<datalist id="IP_list">
 			<option  value="192.168.7.105" />
 			<option  value="192.168.7.106" />
