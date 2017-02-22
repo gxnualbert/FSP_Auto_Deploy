@@ -10,27 +10,74 @@
 
 <br/>
 <p>安装包信息：</p>
-		<form action="/fsp/submitallserviceinfo/" method="get">
-            FSP 安装包URL：<input type="text" name="pkgURL" size="150" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>
-			部署信息：<br><br>
-            机器IP1: <input type="text"  list="IP_list" name="machine1" value="192.168.7.105">    安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>
-            机器IP2: <input type="text"  list="IP_list" name="machine2" value="192.168.7.106">    安装的服务(以逗号分隔)：<input type="text" name="servicelist2" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>
-            机器IP3: <input type="text"  list="IP_list" name="machine3" value="192.168.7.107">    安装的服务(以逗号分隔)：<input type="text" name="servicelist3" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>
-            机器IP4: <input type="text"  list="IP_list" name="machine4" value="192.168.7.108">    安装的服务(以逗号分隔)：<input type="text" name="servicelist4" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>
-            机器IP5: <input type="text"  list="IP_list" name="machine5" value="192.168.7.109">    安装的服务(以逗号分隔)：<input type="text" name="servicelist5" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>
-
-			<input type="submit" value="开始部署" />
-
-		</form>
-
-		<datalist id="IP_list">
+		<!--<form action="/fsp/submitallserviceinfo/" class="form"  method="get">-->
+            <!--FSP 安装包URL：<input type="text" name="pkgURL" size="150" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>-->
+			<!--部署信息：<br><br>-->
+            <!--机器IP1: <input type="text"  list="IP_list" name="machine1" value="192.168.7.105">    安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
+            <!--机器IP2: <input type="text"  list="IP_list" name="machine2" value="192.168.7.106">    安装的服务(以逗号分隔)：<input type="text" name="servicelist2" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
+            <!--机器IP3: <input type="text"  list="IP_list" name="machine3" value="192.168.7.107">    安装的服务(以逗号分隔)：<input type="text" name="servicelist3" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
+            <!--机器IP4: <input type="text"  list="IP_list" name="machine4" value="192.168.7.108">    安装的服务(以逗号分隔)：<input type="text" name="servicelist4" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
+            <!--机器IP5: <input type="text"  list="IP_list" name="machine5" value="192.168.7.109">    安装的服务(以逗号分隔)：<input type="text" name="servicelist5" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
+			<div id="animate-clone">
+            <form class="form" action="/fsp/submitallserviceinfo/" class="form"  method="get">
+				FSP 安装包URL：<input type="text" name="pkgURL" size="150" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>
+				部署信息：<br><br>
+                <div class="toclone">
+                    机器IP：<input type="text" name="ip" id="aname" list="IP_list" />
+					需要安装的服务：<input type="text" name="service" id="aemail" size="100" list="service_list"/>
+                    <a href="#" class="clone">添加</a>
+                    <a href="#" class="delete">删除</a>
+                </div>
+				<br/>
+                    <input type="submit" value="开始部署" />
+            </form>
+			<datalist id="IP_list">
 			<option  value="192.168.7.105" />
 			<option  value="192.168.7.106" />
 			<option  value="192.168.7.107" />
 			<option  value="192.168.7.108" />
 			<option  value="192.168.7.109" />
 		</datalist>
+		<datalist id="service_list">
+			<option  value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095" />
+		</datalist>
+        </div>
+		<!--</form>-->
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js">
+        </script>
+        <script src="/static/jquery-cloneya.js"></script>
+        <script>
+
+            $('#animate-clone').cloneya()
+                    .on('clone_before_clone', function(event, toclone) {
+                        // do something
+                    })
+                    .on('clone_after_clone', function(event, toclone, newclone) {
+                        // do something
+                    })
+                    .on('clone_before_append', function(event, toclone, newclone) {
+                        $(newclone).css('display', 'none');
+                        $(toclone).fadeOut('fast', function() {
+                            $(this).fadeIn('fast');
+                        });
+                    })
+                    .on('clone_after_append', function(event, toclone, newclone) {
+                        $(newclone).slideToggle();
+                    })
+                    // we remove the original binding, the call to remove is also gone
+                    .off('clone_before_delete')
+                    // we add our own, so make sure to remove the element
+                    .on('clone_before_delete', function(event, clone) {
+                        $(clone).css('background-color', 'red');
+                        $(clone).slideToggle('slow', function() {
+                            $(this).remove();
+                        });
+                    })
+                    .on('clone_after_delete', function(event) {
+                        // do something;
+                    });
+        </script>
 
 </body>
 </html>

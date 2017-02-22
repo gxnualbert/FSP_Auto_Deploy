@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 import datetime
 
@@ -684,30 +684,49 @@ def submitallserviceinfo(request):
         packageURL = request.GET['pkgURL']
         packageName = packageURL.split("/")[-1]  # sss-1.2.2.1.tar.gz
         sss = packageName.split(".tar")[0]  # sss-1.2.2.1
-        machine1 = request.GET['machine1']
-        machine2 = request.GET['machine2']
-        machine3 = request.GET['machine3']
-        machine4 = request.GET['machine4']
-        machine5 = request.GET['machine5']
+        formdata=request.GET
+        formdata=dict(formdata._iterlists())
+        #delete pkg from the dict
+        del formdata['pkgURL']
+        # import  pdb;
+        # pdb.set_trace();
+        iplist=[]
+        servicelist=[]
+        for k, v in formdata.iteritems():
+                print "k is: ", k
+                print "V is: ", v
+                if "ip" in k:
+                        for i in v:
+                                iplist.append(i)
+                if "service" in k:
+                        for i in v:
+                                servicelist.append(i)
+        machine_service = dict(zip(iplist, servicelist))
+        # for k,v in phonebook.items():
+        #         print k,v
+        # machine1 = request.GET['machine1']
+        # machine2 = request.GET['machine2']
+        # machine3 = request.GET['machine3']
+        # machine4 = request.GET['machine4']
+        # machine5 = request.GET['machine5']
+        #
+        # servicelist1 = request.GET['servicelist1']
+        # servicelist2 = request.GET['servicelist2']
+        # servicelist3 = request.GET['servicelist3']
+        # servicelist4 = request.GET['servicelist4']
+        # servicelist5 = request.GET['servicelist5']
+        #
+        # #store the service info in dic, one machine two serveral service and serveral port
+        # mac_service={}
+        # mac_service[machine1]=servicelist1
+        # mac_service[machine2]=servicelist2
+        # mac_service[machine3]=servicelist3
+        # mac_service[machine4]=servicelist4
+        # mac_service[machine5]=servicelist5
+        #
+        mLogic.m_DownPkgAndTar(packageURL,machine_service,PORT,LINUX_USER,LINUX_PWD)
+        mLogic.m_InstallService(machine_service,sss,LINUX_USER,LINUX_PWD,PORT)
 
-        servicelist1 = request.GET['servicelist1']
-        servicelist2 = request.GET['servicelist2']
-        servicelist3 = request.GET['servicelist3']
-        servicelist4 = request.GET['servicelist4']
-        servicelist5 = request.GET['servicelist5']
-
-        #store the service info in dic, one machine two serveral service and serveral port
-        mac_service={}
-        mac_service[machine1]=servicelist1
-        mac_service[machine2]=servicelist2
-        mac_service[machine3]=servicelist3
-        mac_service[machine4]=servicelist4
-        mac_service[machine5]=servicelist5
-
-        mLogic.m_DownPkgAndTar(packageURL,mac_service,PORT,LINUX_USER,LINUX_PWD)
-        mLogic.m_InstallService(mac_service,sss,LINUX_USER,LINUX_PWD,PORT)
-
-        # mLogic.m_installallservice(mac_service,PORT,LINUX_USER,LINUX_PWD,sss)
         return render(request,'firstform/installsuccessfully.html')
 
 def search_form(request):

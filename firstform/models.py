@@ -4,7 +4,8 @@ from ModifyConfigFile import MofidyFSPFile as mfsp
 from StartService import StartService as ss
 from log import AddLog as log
 from django.db import models
-import json
+import MySQLdb
+
 
 # Create your models here.
 b = tf()
@@ -13,6 +14,177 @@ myMofify = mfsp()
 tf.prepareFolder()
 
 logging = log.Log()
+
+db = MySQLdb.connect("192.168.7.105","root","123456","fsp_sss" )
+cursor = db.cursor()
+sql="select service_instance_id,service_instance_password from fsp_sss"
+try:
+   # excute sql
+   cursor.execute(sql)
+   # get all records
+   results = cursor.fetchall()
+   for row in results:
+      print row
+      # print "fname=%s,lname=%s,age=%d,sex=%s,income=%d" % \
+      #        (fname, lname, age, sex, income )
+except:
+   print "Error: unable to fecth data"
+# close database connection
+db.close()
+
+# Access config info
+accessPort1 = "10000"
+accessPort2 = "10001"
+ListenPort = "22222"
+
+accessTCPPort1 = "1089"
+accessUDPPort1 = "1089"
+
+accessServiceInstanceID1 = "access_instance_1"
+accessServiceInstancePassword1 = "access_instance_fsp"
+
+HTTPServiceListenPort = "3000"
+
+accessTCPPort2 = "1089"
+accessUDPPort2 = "1089"
+accessServiceInstanceID2 = "access_instance_2"
+accessServiceInstancePassword2 = "access_instance_fsp"
+
+# ICEMaster config Info
+ICEMasterPort = "10000"
+
+# ICEReplicaInfo
+ICEReplicaPort = "10001"
+
+# ManagerPort = "1089"
+# ManagerServiceIPv4Addr = "TCP:" + ManagerIP + ":" + ManagerPort
+#
+# # av1 config info
+# AVTCPPort1 = "1089"
+# AVUDPort1 = "1089"
+# AVInstanceGroupID1 = "1"
+# AVServiceInstanceID1 = "av_instance_1"
+# AVServiceInstancePassword1 = "av_instance_fsp"
+#
+# # av2 config info
+# AVIP2 = request.GET['av2']
+# AVTCPPort2 = "1089"
+# AVUDPort2 = "1089"
+# AVInstanceGroupID2 = "1"
+# AVServiceInstanceID2 = "av_instance_2"
+# AVServiceInstancePassword2 = "av_instance_fsp"
+#
+# # av3 config info
+# AVIP3 = request.GET['av3']
+# AVTCPPort3 = "1089"
+# AVUDPort3 = "1089"
+# AVInstanceGroupID3 = "0"
+# AVServiceInstanceID3 = "av_instance_3"
+# AVServiceInstancePassword3 = "av_instance_fsp"
+#
+# # av4 config info
+# AVIP4 = request.GET['av4']
+# AVTCPPort4 = "1089"
+# AVUDPort4 = "1089"
+# AVInstanceGroupID4 = "0"
+# AVServiceInstanceID4 = "av_instance_4"
+# AVServiceInstancePassword4 = "av_instance_fsp"
+#
+# # av5 config info
+# AVIP5 = request.GET['av5']
+# AVTCPPort5 = "1089"
+# AVUDPort5 = "1089"
+# AVInstanceGroupID5 = "0"
+# AVServiceInstanceID5 = "av_instance_5"
+# AVServiceInstancePassword5 = "av_instance_fsp"
+#
+# # vnc config info
+# VNCIP1 = request.GET['vnc1']
+# VNCPort1 = "1091"
+# VNCTCPPort1 = "1089"
+# VNCUDPPort1 = "1089"
+# VNCInstanceGroupID1 = "1"
+# VNCServiceInstanceID1 = "vnc_instance_1"
+# VNCServiceInstancePassword1 = "vnc_instance_fsp"
+#
+# VNCIP2 = request.GET['vnc2']
+# VNCPort2 = "1091"
+# VNCTCPPort2 = "1089"
+# VNCUDPPort2 = "1089"
+# VNCInstanceGroupID2 = "1"
+# VNCServiceInstanceID2 = "vnc_instance_2"
+# VNCServiceInstancePassword2 = "vnc_instance_fsp"
+#
+# VNCIP3 = request.GET['vnc3']
+# VNCPort3 = "1091"
+# VNCTCPPort3 = "1089"
+# VNCUDPPort3 = "1089"
+# VNCInstanceGroupID3 = "0"
+# VNCServiceInstanceID3 = "vnc_instance_3"
+# VNCServiceInstancePassword3 = "vnc_instance_fsp"
+#
+# VNCIP4 = request.GET['vnc4']
+# VNCPort4 = "1091"
+# VNCTCPPort4 = "1089"
+# VNCUDPPort4 = "1089"
+# VNCInstanceGroupID4 = "0"
+# VNCServiceInstanceID4 = "vnc_instance_4"
+# VNCServiceInstancePassword4 = "vnc_instance_fsp"
+#
+# VNCIP5 = request.GET['vnc5']
+# VNCPort5 = "1091"
+# VNCTCPPort5 = "1089"
+# VNCUDPPort5 = "1089"
+# VNCInstanceGroupID5 = "0"
+# VNCServiceInstanceID5 = "vnc_instance_5"
+# VNCServiceInstancePassword5 = "vnc_instance_fsp"
+#
+# WhiteBoardIP1 = request.GET['whiteboard1']
+# WhiteBoardPort1 = "1093"
+#
+# WBTCPPort1 = "1089"
+# WBUDPort1 = "1089"
+# WBInstanceGroupID1 = "1"
+# WBServiceInstanceID1 = "white_board_instance_1"
+# WBServiceInstancePassword1 = "white_board_instance_fsp"
+#
+# WhiteBoardIP2 = request.GET['whiteboard2']
+# WhiteBoardPort2 = "1093"
+#
+# WBTCPPort2 = "1089"
+# WBUDPort2 = "1089"
+# WBInstanceGroupID2 = "1"
+# WBServiceInstanceID2 = "white_board_instance_2"
+# WBServiceInstancePassword2 = "white_board_instance_fsp"
+#
+# WhiteBoardIP3 = request.GET['whiteboard3']
+# WhiteBoardPort3 = "1093"
+#
+# WBTCPPort3 = "1089"
+# WBUDPort3 = "1089"
+# WBInstanceGroupID3 = "0"
+# WBServiceInstanceID3 = "white_board_instance_3"
+# WBServiceInstancePassword3 = "white_board_instance_fsp"
+#
+# WhiteBoardIP4 = request.GET['whiteboard4']
+# WhiteBoardPort4 = "1093"
+#
+# WBTCPPort4 = "1089"
+# WBUDPort4 = "1089"
+# WBInstanceGroupID4 = "0"
+# WBServiceInstanceID4 = "white_board_instance_4"
+# WBServiceInstancePassword4 = "white_board_instance_fsp"
+#
+# WhiteBoardIP5 = request.GET['whiteboard5']
+# WhiteBoardPort5 = "1093"
+#
+# WBTCPPort5 = "1089"
+# WBUDPort5 = "1089"
+# WBInstanceGroupID5 = "0"
+# WBServiceInstanceID5 = "white_board_instance_5"
+# WBServiceInstancePassword5 = "white_board_instance_fsp"
+
+
 
 class modleLogic(object):
     def __init__(self):
