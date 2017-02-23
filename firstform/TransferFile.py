@@ -147,17 +147,22 @@ class TransferFSPFile(object):
         iceMasterRemoteConfigPath = basePath+"/ice_master/config.master"
         iceMasterNode1RemoteConfigPath = basePath+"/ice_master/config.node1"
         iceMasterServiceRemoteConfigPath =  basePath+"/ice_master/config.server"
+        iceMasterClientRemoteConfigPath =  basePath+"/ice_master/config.client"
+
         iceMasterLocalPath = "./TmpFile/ice_master/config.master"
         iceMasterNode1LocalPath = "./TmpFile/ice_master/config.node1"
         iceMasterServerLocalPath = "./TmpFile/ice_master/config.server"
+        iceMasterClientLocalPath = "./TmpFile/ice_master/config.client"
         if isUpload.lower()=="y":
             self.uploadFile(iceMasterIp,port,username,password,iceMasterLocalPath,iceMasterRemoteConfigPath)
             self.uploadFile(iceMasterIp,port,username,password,iceMasterNode1LocalPath,iceMasterNode1RemoteConfigPath)
             self.uploadFile(iceMasterIp,port,username,password,iceMasterServerLocalPath,iceMasterServiceRemoteConfigPath)
+            self.uploadFile(iceMasterIp,port,username,password,iceMasterClientLocalPath,iceMasterClientRemoteConfigPath)
         else:
             self.downloadFile(iceMasterIp, port, username, password, iceMasterRemoteConfigPath, iceMasterLocalPath)
             self.downloadFile(iceMasterIp, port, username, password, iceMasterNode1RemoteConfigPath,iceMasterNode1LocalPath)
             self.downloadFile(iceMasterIp, port, username, password, iceMasterServiceRemoteConfigPath,iceMasterServerLocalPath)
+            self.downloadFile(iceMasterIp, port, username, password, iceMasterClientRemoteConfigPath,iceMasterClientLocalPath)
 
     @classmethod
     def transferReplicaFile(self,iceReplicaip,port, username, password,basePath,isUpload="N"):
@@ -165,15 +170,20 @@ class TransferFSPFile(object):
         iceReplicaRemoteConfigPath = basePath+"/ice_replica/config.replica"
         iceReplicaNode2RemoteConfigPath = basePath+"/ice_replica/config.node2"
         iceReplicaServerRemoteConfigPath = basePath+"/ice_replica/config.server"
+        iceReplicaClientRemoteConfigPath = basePath+"/ice_replica/config.client"
+
         iceReplicaLocalPath = "./TmpFile/ice_replica/config.replica"
         iceReplicaNode2LocalPath = "./TmpFile/ice_replica/config.node2"
         iceReplicaServerLocalPath = "./TmpFile/ice_replica/config.server"
+        iceReplicaClientLocalPath = "./TmpFile/ice_replica/config.client"
         if isUpload.lower()=="y":
             self.uploadFile(iceReplicaip, port, username, password, iceReplicaLocalPath, iceReplicaRemoteConfigPath)
             self.uploadFile(iceReplicaip, port, username, password, iceReplicaNode2LocalPath,
                             iceReplicaNode2RemoteConfigPath)
             self.uploadFile(iceReplicaip, port, username, password, iceReplicaServerLocalPath,
                             iceReplicaServerRemoteConfigPath)
+            self.uploadFile(iceReplicaip, port, username, password, iceReplicaClientLocalPath,
+                            iceReplicaClientRemoteConfigPath)
 
 
         else:
@@ -182,6 +192,8 @@ class TransferFSPFile(object):
                               iceReplicaNode2LocalPath)
             self.downloadFile(iceReplicaip, port, username, password, iceReplicaServerRemoteConfigPath,
                               iceReplicaServerLocalPath)
+            self.downloadFile(iceReplicaip, port, username, password, iceReplicaClientRemoteConfigPath,
+                              iceReplicaClientLocalPath)
 
     @classmethod
     def transferManagerFile(self,managerIp, port, username, password, basePath,isUpload="N"):

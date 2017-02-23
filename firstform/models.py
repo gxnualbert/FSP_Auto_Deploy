@@ -15,176 +15,10 @@ tf.prepareFolder()
 
 logging = log.Log()
 
-db = MySQLdb.connect("192.168.7.105","root","123456","fsp_sss" )
-cursor = db.cursor()
-sql="select service_instance_id,service_instance_password from fsp_sss"
-try:
-   # excute sql
-   cursor.execute(sql)
-   # get all records
-   results = cursor.fetchall()
-   for row in results:
-      print row
-      # print "fname=%s,lname=%s,age=%d,sex=%s,income=%d" % \
-      #        (fname, lname, age, sex, income )
-except:
-   print "Error: unable to fecth data"
-# close database connection
-db.close()
-
-# Access config info
-accessPort1 = "10000"
-accessPort2 = "10001"
-ListenPort = "22222"
-
-accessTCPPort1 = "1089"
-accessUDPPort1 = "1089"
-
-accessServiceInstanceID1 = "access_instance_1"
-accessServiceInstancePassword1 = "access_instance_fsp"
-
-HTTPServiceListenPort = "3000"
-
-accessTCPPort2 = "1089"
-accessUDPPort2 = "1089"
-accessServiceInstanceID2 = "access_instance_2"
-accessServiceInstancePassword2 = "access_instance_fsp"
-
-# ICEMaster config Info
-ICEMasterPort = "10000"
-
-# ICEReplicaInfo
-ICEReplicaPort = "10001"
-
-# ManagerPort = "1089"
-# ManagerServiceIPv4Addr = "TCP:" + ManagerIP + ":" + ManagerPort
-#
-# # av1 config info
-# AVTCPPort1 = "1089"
-# AVUDPort1 = "1089"
-# AVInstanceGroupID1 = "1"
-# AVServiceInstanceID1 = "av_instance_1"
-# AVServiceInstancePassword1 = "av_instance_fsp"
-#
-# # av2 config info
-# AVIP2 = request.GET['av2']
-# AVTCPPort2 = "1089"
-# AVUDPort2 = "1089"
-# AVInstanceGroupID2 = "1"
-# AVServiceInstanceID2 = "av_instance_2"
-# AVServiceInstancePassword2 = "av_instance_fsp"
-#
-# # av3 config info
-# AVIP3 = request.GET['av3']
-# AVTCPPort3 = "1089"
-# AVUDPort3 = "1089"
-# AVInstanceGroupID3 = "0"
-# AVServiceInstanceID3 = "av_instance_3"
-# AVServiceInstancePassword3 = "av_instance_fsp"
-#
-# # av4 config info
-# AVIP4 = request.GET['av4']
-# AVTCPPort4 = "1089"
-# AVUDPort4 = "1089"
-# AVInstanceGroupID4 = "0"
-# AVServiceInstanceID4 = "av_instance_4"
-# AVServiceInstancePassword4 = "av_instance_fsp"
-#
-# # av5 config info
-# AVIP5 = request.GET['av5']
-# AVTCPPort5 = "1089"
-# AVUDPort5 = "1089"
-# AVInstanceGroupID5 = "0"
-# AVServiceInstanceID5 = "av_instance_5"
-# AVServiceInstancePassword5 = "av_instance_fsp"
-#
-# # vnc config info
-# VNCIP1 = request.GET['vnc1']
-# VNCPort1 = "1091"
-# VNCTCPPort1 = "1089"
-# VNCUDPPort1 = "1089"
-# VNCInstanceGroupID1 = "1"
-# VNCServiceInstanceID1 = "vnc_instance_1"
-# VNCServiceInstancePassword1 = "vnc_instance_fsp"
-#
-# VNCIP2 = request.GET['vnc2']
-# VNCPort2 = "1091"
-# VNCTCPPort2 = "1089"
-# VNCUDPPort2 = "1089"
-# VNCInstanceGroupID2 = "1"
-# VNCServiceInstanceID2 = "vnc_instance_2"
-# VNCServiceInstancePassword2 = "vnc_instance_fsp"
-#
-# VNCIP3 = request.GET['vnc3']
-# VNCPort3 = "1091"
-# VNCTCPPort3 = "1089"
-# VNCUDPPort3 = "1089"
-# VNCInstanceGroupID3 = "0"
-# VNCServiceInstanceID3 = "vnc_instance_3"
-# VNCServiceInstancePassword3 = "vnc_instance_fsp"
-#
-# VNCIP4 = request.GET['vnc4']
-# VNCPort4 = "1091"
-# VNCTCPPort4 = "1089"
-# VNCUDPPort4 = "1089"
-# VNCInstanceGroupID4 = "0"
-# VNCServiceInstanceID4 = "vnc_instance_4"
-# VNCServiceInstancePassword4 = "vnc_instance_fsp"
-#
-# VNCIP5 = request.GET['vnc5']
-# VNCPort5 = "1091"
-# VNCTCPPort5 = "1089"
-# VNCUDPPort5 = "1089"
-# VNCInstanceGroupID5 = "0"
-# VNCServiceInstanceID5 = "vnc_instance_5"
-# VNCServiceInstancePassword5 = "vnc_instance_fsp"
-#
-# WhiteBoardIP1 = request.GET['whiteboard1']
-# WhiteBoardPort1 = "1093"
-#
-# WBTCPPort1 = "1089"
-# WBUDPort1 = "1089"
-# WBInstanceGroupID1 = "1"
-# WBServiceInstanceID1 = "white_board_instance_1"
-# WBServiceInstancePassword1 = "white_board_instance_fsp"
-#
-# WhiteBoardIP2 = request.GET['whiteboard2']
-# WhiteBoardPort2 = "1093"
-#
-# WBTCPPort2 = "1089"
-# WBUDPort2 = "1089"
-# WBInstanceGroupID2 = "1"
-# WBServiceInstanceID2 = "white_board_instance_2"
-# WBServiceInstancePassword2 = "white_board_instance_fsp"
-#
-# WhiteBoardIP3 = request.GET['whiteboard3']
-# WhiteBoardPort3 = "1093"
-#
-# WBTCPPort3 = "1089"
-# WBUDPort3 = "1089"
-# WBInstanceGroupID3 = "0"
-# WBServiceInstanceID3 = "white_board_instance_3"
-# WBServiceInstancePassword3 = "white_board_instance_fsp"
-#
-# WhiteBoardIP4 = request.GET['whiteboard4']
-# WhiteBoardPort4 = "1093"
-#
-# WBTCPPort4 = "1089"
-# WBUDPort4 = "1089"
-# WBInstanceGroupID4 = "0"
-# WBServiceInstanceID4 = "white_board_instance_4"
-# WBServiceInstancePassword4 = "white_board_instance_fsp"
-#
-# WhiteBoardIP5 = request.GET['whiteboard5']
-# WhiteBoardPort5 = "1093"
-#
-# WBTCPPort5 = "1089"
-# WBUDPort5 = "1089"
-# WBInstanceGroupID5 = "0"
-# WBServiceInstanceID5 = "white_board_instance_5"
-# WBServiceInstancePassword5 = "white_board_instance_fsp"
 
 
+remotePath="/fsmeeting/sss"
+accessHTTP2ListenPort="3000"
 
 class modleLogic(object):
     def __init__(self):
@@ -200,18 +34,16 @@ class modleLogic(object):
 
     @classmethod
     def m_InstallService(self,ip_service, pkgPath,username, password, port):
-        """Install the service
+        """Install the service according to the dic of ip and service
 
-        Download the package and then tar it, and then install on machine
-
-        Args:
-            ip_service:this is a dic, key is ip, and value is service and port
-            pkgURL: the URL to download the fsp package
-            package_path:
-            username: the username that login to machine
-            password: the password using to login machine
-            port: the port that login to machine
+        :param ip_service:this is a dic, key is ip, and value is service and port
+        :param pkgPath: /fsmeeting/sss
+        :param username:the username that login to machine
+        :param password:the password using to login machine
+        :param port:the port that login to machine
+        :return:
         """
+
         for k,v in ip_service.items():
             #install service
             servicePort = v.split(";")
@@ -252,7 +84,7 @@ class modleLogic(object):
     def m_BasePath(self,hostname,port,username,password):
         """get the package name from the machine
 
-            :return return the sss-1.2.3.0 package name
+            :return return the package name, e.g: sss-1.2.3.0
         """
         execmd="cd /root\nls"
         result=b.sshclient_execmd(hostname,port,username,password,execmd)
@@ -291,7 +123,247 @@ class modleLogic(object):
                                         accessServiceInstancePassword1,
                                         HTTPServiceListenPort, ManagerServiceIPv4Addr, ICEMasterIP, ICEMasterPort,
                                         ICEReplicaIP, ICEReplicaPort)
-        b.transferAccessFile(accessIP1, port, username, password, basePath, "Y")
+        b.transferAccessFile(accessIP1, port, username, password, remotePath, "Y")
+
+    @classmethod
+    def m_AvFileConfig(self,AVIP1,port,username,password,basePath,AVTCPPort1,AVUDPort1,AVInstanceGroupID1,AVServiceInstanceID1,
+                       AVServiceInstancePassword1,ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr
+                       ):
+        b.transferAvFile(AVIP1, port, username, password, remotePath)
+        myMofify.modifyAvConfigFile(AVIP1, AVTCPPort1, AVUDPort1, AVInstanceGroupID1, AVServiceInstanceID1,
+                                    AVServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                    ICEReplicaPort,
+                                    ManagerServiceIPv4Addr)
+
+        b.transferAvFile(AVIP1, port, username, password, remotePath, "Y")
+
+
+    @classmethod
+    def m_VncFileConfig(self,VNCIP1, port, username, password, basePath, VNCTCPPort1, VNCUDPPort1, VNCInstanceGroupID1,
+                                     VNCServiceInstanceID1,
+                                     VNCServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr):
+        b.transferVncFile(VNCIP1, port, username, password, remotePath)
+        print "finished download vnc file, start to modify it"
+        myMofify.modifyVncConfigFile(VNCIP1, VNCTCPPort1, VNCUDPPort1, VNCInstanceGroupID1,
+                                     VNCServiceInstanceID1,
+                                     VNCServiceInstancePassword1, ICEMasterIP, ICEMasterPort, ICEReplicaIP,
+                                     ICEReplicaPort, ManagerServiceIPv4Addr)
+        b.transferVncFile(VNCIP1, port, username, password, remotePath, "Y")
+
+    @classmethod
+    def m_WhiteBoardFileConfig(self,WhiteBoardIP1, port, username, password, basePath, WBTCPPort1, WBUDPort1, WBInstanceGroupID1,
+                                            WBServiceInstanceID1, WBServiceInstancePassword1, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr):
+        b.transferWBFile(WhiteBoardIP1, port, username, password, remotePath)
+        myMofify.modifyWhiteBoardConfigFile(WhiteBoardIP1,WBTCPPort1, WBUDPort1, WBInstanceGroupID1,
+                                            WBServiceInstanceID1, WBServiceInstancePassword1, ICEMasterIP,
+                                            ICEMasterPort,
+                                            ICEReplicaIP, ICEReplicaPort, ManagerServiceIPv4Addr)
+        b.transferWBFile(WhiteBoardIP1, port, username, password, remotePath, "Y")
+
+    @classmethod
+    def m_Ice_MasterFileConfig(self,ICEMasterIP, port, username, password, basePath,ICEMasterPort, ICEReplicaIP, ICEReplicaPort, dbHost, dbPort,
+                                           dbName, dbUser, dbPwd):
+        b.transferMasterFile(ICEMasterIP, port, username, password, remotePath)
+        myMofify.modifyIceMasterConfigFile(ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort, dbHost, dbPort,
+                                           dbName, dbUser, dbPwd)
+        # myMofify.modifyIceMasterConfigFile(ICEMasterIP,)
+        b.transferMasterFile(ICEMasterIP, port, username, password, remotePath, "Y")
+
+    @classmethod
+    def m_Ice_ReplicaFileConfig(self,ICEReplicaIP, port, username, password, basePath,ICEMasterIP,
+                                ICEMasterPort,ICEReplicaPort,
+                                dbHost, dbPort,
+                                dbName, dbUser, dbPwd
+                                ):
+        b.transferReplicaFile(ICEReplicaIP, port, username, password, remotePath)
+        myMofify.modifyIceReplicaConfigFile(ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort, dbHost, dbPort,
+                                            dbName, dbUser, dbPwd)
+        b.transferReplicaFile(ICEReplicaIP, port, username, password, remotePath, "Y")
+
+    @classmethod
+    def m_ManagerFileConfig(self,ManagerIP, port, username, password,ICEMasterIP, ICEMasterPort, ICEReplicaIP, ICEReplicaPort,ManagerTCPPort,ManagerUDPPort):
+        b.transferManagerFile(ManagerIP, port, username, password, remotePath)
+        myMofify.modifyManagerConfigFile(ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,ManagerTCPPort,ManagerUDPPort)
+        b.transferManagerFile(ManagerIP, port, username, password, remotePath, "Y")
+
+    @classmethod
+    def m_SetCondifFile(self,ip_service, pkgPath,username, password, port,dbinfo):
+        iceInfo={}
+        managerInfo={}
+        accessServiceInfo={}
+        avServiceInfo={}
+        vncServiceInfo={}
+        whiteboardServiceInfo={}
+        for k,v in ip_service.items():
+            servicePortList = v.split(";")
+
+            for i in servicePortList:
+                if i:
+                    service = i.split(",")[0]
+                    servicePort=i.split(",")[1]
+                    if "ice_master" in service:
+                        iceInfo['iceMasterIp']=k
+                        iceInfo['iceMasterPort']=servicePort
+                    if "ice_replica" in service:
+                        iceInfo['iceReplicaIp']=k
+                        iceInfo['iceReplicaPort']=servicePort
+                    if "manager" in service:
+                        managerInfo['managerIp']=k
+                        managerInfo['managerPort']=servicePort
+
+        ManagerServiceIPv4Addr="TCP:" + managerInfo['managerIp'] + ":" + managerInfo['managerPort']
+        avFlag=1
+        vncFlag=1
+        whiteboardFlag=1
+        accessFlag=1
+        for k,v in ip_service.items():
+            #install service
+            servicePortList = v.split(";")
+            for i in servicePortList:
+                if i:
+                    service=i.split(",")[0]
+                    servicePort=i.split(",")[1]
+                    if "av" in service.lower():
+                        if "m" in service:
+                            InstanceGroupID="1"
+                        else:
+                            InstanceGroupID="0"
+                        ServiceInstanceID="auto_av_instance_"+str(avFlag)
+                        ServiceInstancePassword="auto_av_instance_pwd_"+str(avFlag)
+                        avServiceInfo[ServiceInstanceID]=ServiceInstancePassword
+                        self.m_AvFileConfig(k,port,username,password,pkgPath,servicePort,servicePort,InstanceGroupID,ServiceInstanceID,
+                                            ServiceInstancePassword,iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],iceInfo['iceReplicaIp'],
+                                            iceInfo['iceReplicaPort'],ManagerServiceIPv4Addr)
+                        print k,ServiceInstancePassword,"finished"
+                        avFlag=avFlag+1
+
+                        tf.prepareFolder()
+                    elif "vnc" in service.lower():
+                        if "m" in service:
+                            InstanceGroupID="1"
+                        else:
+                            InstanceGroupID="0"
+                        ServiceInstanceID = "auto_vnc_instance_" + str(vncFlag)
+                        ServiceInstancePassword = "auto_vnc_instance_pwd_" + str(vncFlag)
+                        vncServiceInfo[ServiceInstanceID]=ServiceInstancePassword
+                        self.m_VncFileConfig(k,port,username,password,pkgPath,servicePort,servicePort,InstanceGroupID,ServiceInstanceID,
+                                             ServiceInstancePassword,
+                                             iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],iceInfo['iceReplicaIp'],
+                                             iceInfo['iceReplicaPort'],
+                                             ManagerServiceIPv4Addr)
+                        print k,ServiceInstancePassword,"finished"
+                        vncFlag=vncFlag+1
+                        tf.prepareFolder()
+                    elif "whiteboard" in service.lower():
+                        if "m" in service:
+                            InstanceGroupID="1"
+                        else:
+                            InstanceGroupID="0"
+                        ServiceInstanceID = "auto_whiteboard_instance_" + str(whiteboardFlag)
+                        ServiceInstancePassword = "auto_whiteboard_instance_pwd_" + str(whiteboardFlag)
+                        whiteboardServiceInfo[ServiceInstanceID]=ServiceInstancePassword
+                        self.m_WhiteBoardFileConfig(k,port,username,password,pkgPath,servicePort,servicePort,InstanceGroupID,ServiceInstanceID,
+                                                    ServiceInstancePassword,iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],iceInfo['iceReplicaIp'],
+                                                    iceInfo['iceReplicaPort'],ManagerServiceIPv4Addr)
+                        print k, ServiceInstancePassword, "finished"
+                        whiteboardFlag=whiteboardFlag+1
+                        tf.prepareFolder()
+                    elif "access" in service.lower():
+                        ServiceInstanceID = "auto_access_instance_" + str(accessFlag)
+                        ServiceInstancePassword = "auto_access_instance_pwd_" + str(accessFlag)
+                        accessServiceInfo[ServiceInstanceID]=ServiceInstancePassword
+                        self.m_AccessFileConfig(k,port,username,password,pkgPath,servicePort,servicePort,ServiceInstanceID,ServiceInstancePassword,
+                                                accessHTTP2ListenPort,ManagerServiceIPv4Addr,iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],
+                                                iceInfo['iceReplicaIp'],iceInfo['iceReplicaPort'])
+                        print k,ServiceInstancePassword,"finished"
+                        accessFlag=accessFlag+1
+                        tf.prepareFolder()
+                    elif "manager" in service.lower():
+                        # self.m_ManagerFileConfig(k,port,username,password,pkgPath,iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],iceInfo['iceReplicaIp']
+                        #                          ,iceInfo['iceReplicaPort'])
+                        self.m_ManagerFileConfig(k,port,username,password,iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],
+                                                 iceInfo['iceReplicaIp'],iceInfo['iceReplicaPort'],servicePort,servicePort)
+                        print "mananger finished config"
+                        tf.prepareFolder()
+                    elif "ice_master" in service.lower():
+                        self.m_Ice_MasterFileConfig(iceInfo['iceMasterIp'],port,username,password,pkgPath,iceInfo['iceMasterPort'],iceInfo['iceReplicaIp'],
+                                                    iceInfo['iceReplicaPort'],dbinfo["dbHost"],dbinfo["dbPort"],dbinfo["dbName"],
+                                                    dbinfo["dbUser"],dbinfo["dbPwd"])
+                        # self.m_Ice_MasterFileConfig(iceInfo['iceMasterIp'],)
+                        print "ice master finished config"
+                        tf.prepareFolder()
+                    elif "ice_replica" in service.lower():
+                        self.m_Ice_ReplicaFileConfig(k,port,username,password,pkgPath,iceInfo['iceMasterIp'],iceInfo['iceMasterPort'],
+                                                     iceInfo['iceReplicaPort'],dbinfo["dbHost"],dbinfo["dbPort"],dbinfo["dbName"],
+                                                    dbinfo["dbUser"],dbinfo["dbPwd"])
+                        print "ice replica finished config"
+                        # empty folder, or next time download file, the file is empty
+                        tf.prepareFolder()
+
+
+
+        db = MySQLdb.connect(dbinfo["dbHost"], dbinfo["dbUser"], dbinfo["dbPwd"], dbinfo["dbName"])
+        cursor = db.cursor()
+
+        #empty the table
+        sql = "DELETE from t_service_info"
+        try:
+            cursor.execute(sql)
+            db.commit()
+        except:
+            print "Error: unable to fecth data"
+
+        #update database
+        sql="insert into t_service_info(service_id,service_instance_id,service_instance_password) VALUES (%s,%s,%s);"
+        serviceTuple=(accessServiceInfo,avServiceInfo,vncServiceInfo,whiteboardServiceInfo)
+        for i in range(len(serviceTuple)):
+            for k, v in serviceTuple[i].iteritems():
+                cursor.execute(sql, (i, k, v))
+                db.commit()
+
+        db.close()
+
+
+
+    @classmethod
+    def m_StartService(self,ip_service,username,password,port):
+
+        for k,v in ip_service.items():
+
+            servicePortList = v.split(";")
+            print k
+            for i in servicePortList:
+                if i:
+                    service=i.split(",")[0]
+                    print service
+                    if "manager" in service.lower():
+                        ss.startManager(k, port, username, password)
+
+                    elif "access" in service.lower():
+                        ss.startAccess(k, port, username, password)
+                    elif "vnc" in service.lower():
+                        ss.startVnc(k, port, username, password, remotePath)
+                    elif "whiteboard" in service.lower():
+                        ss.startWhiteBoard(k, port, username, password, remotePath)
+
+                    elif "av" in service.lower():
+                        ss.startAv(k, port, username, password, remotePath)
+
+                    elif "ice_master" in service.lower():
+                        ss.startIceMaster(k, port, username, password, remotePath)
+
+                    elif "ice_replica" in service.lower():
+                        ss.startIceReplica(k, port, username, password, remotePath)
+
+
+
+
+
 
 
 

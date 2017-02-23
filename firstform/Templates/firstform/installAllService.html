@@ -3,33 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>部署页面第二版</title>
+    <style type="text/css">
+         input{
+                padding: 2px;
+                border: solid 1px #E5E5E5;
+                margin: 5px;
+                font: normal 18px/100% Verdana, Tahoma, sans-serif;
+            }
+            #pkg{
+                font: normal 12px/100% Verdana, Tahoma, sans-serif;
+            }
+
+    </style>
 </head>
 <body>
-
-
-
 <br/>
 <p>安装包信息：</p>
-		<!--<form action="/fsp/submitallserviceinfo/" class="form"  method="get">-->
-            <!--FSP 安装包URL：<input type="text" name="pkgURL" size="150" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>-->
-			<!--部署信息：<br><br>-->
-            <!--机器IP1: <input type="text"  list="IP_list" name="machine1" value="192.168.7.105">    安装的服务(以逗号分隔)：<input type="text" name="servicelist1" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
-            <!--机器IP2: <input type="text"  list="IP_list" name="machine2" value="192.168.7.106">    安装的服务(以逗号分隔)：<input type="text" name="servicelist2" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
-            <!--机器IP3: <input type="text"  list="IP_list" name="machine3" value="192.168.7.107">    安装的服务(以逗号分隔)：<input type="text" name="servicelist3" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
-            <!--机器IP4: <input type="text"  list="IP_list" name="machine4" value="192.168.7.108">    安装的服务(以逗号分隔)：<input type="text" name="servicelist4" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
-            <!--机器IP5: <input type="text"  list="IP_list" name="machine5" value="192.168.7.109">    安装的服务(以逗号分隔)：<input type="text" name="servicelist5" size="100" value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095"> <br><br>-->
 			<div id="animate-clone">
             <form class="form" action="/fsp/submitallserviceinfo/" class="form"  method="get">
-				FSP 安装包URL：<input type="text" name="pkgURL" size="150" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>
-				部署信息：<br><br>
+				FSP 安装包URL：<input type="text"  id="pkg" name="pkgURL" size="160" value="http://192.168.5.30:8080/view/%E5%B9%B3%E5%8F%B0%E4%BA%A7%E5%93%81%E7%BA%BF/job/build_platform_fsp_sss/lastSuccessfulBuild/artifact/sss-1.2.3.0.tar.gz"><br><br>
+
+                数据库信息：<br/>
+                DBIP：<input type="text" name="dbHost" value="192.168.7.105"/><br/>
+                DBPort：<input type="text" name="dbPort" value="3306"/><br/>
+                DBName：<input type="text" name="dbName" value="fsp_sss"/><br/>
+                DBUser：<input type="text" name="dbUser" value="root"/><br/>
+                DBPwd：<input type="text" name="dbPwd" value="123456"/><br/><br/>
+                部署信息：<br>
                 <div class="toclone">
-                    机器IP：<input type="text" name="ip" id="aname" list="IP_list" />
-					需要安装的服务：<input type="text" name="service" id="aemail" size="100" list="service_list"/>
-                    <a href="#" class="clone">添加</a>
-                    <a href="#" class="delete">删除</a>
+                    机器IP：<input type="text" name="ip" id="aname" list="IP_list" size="13"  />
+					需要安装的服务：<input type="text" name="service" id="aemail" size="120" list="service_list"/>
+                    <a href="#" class="clone">增加行</a>
+                    <a href="#" class="delete">删除行</a>
                 </div>
 				<br/>
-                    <input type="submit" value="开始部署" />
+                    <input type="submit" class="submit" value="开始部署" /><br><br>
+                提示：<br>
+                mav，表示av的主实例，m是master的缩写<br>
+                mvnc，表示vnc的主实例，m是master的缩写<br>
+                mwhiteboard，表示whiteboard的主实例，m是master的缩写<br>
+                sav，表示av的级联实例，s 是slave的缩写<br>
+                svnc，表示vnc的级联实例，s 是slave的缩写<br>
+                swhiteboard，表示whiteboard的级联实例，s 是slave的缩写<br><br>
             </form>
 			<datalist id="IP_list">
 			<option  value="192.168.7.105" />
@@ -39,7 +54,7 @@
 			<option  value="192.168.7.109" />
 		</datalist>
 		<datalist id="service_list">
-			<option  value="av,1089;vnc,1090;whiteboard,1091;access,1092;manager,1093;ice_master,1094;ice_replica,1095" />
+			<option  value="mav,1089;mvnc,1090;mwhiteboard,1091;sav,1092;svnc,1093;swhiteboard,1094;access,1095;manager,1096;ice_master,10000;ice_replica,10001" />
 		</datalist>
         </div>
 		<!--</form>-->

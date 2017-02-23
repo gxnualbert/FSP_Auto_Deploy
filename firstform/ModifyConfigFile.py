@@ -83,6 +83,8 @@ class MofidyFSPFile(object):
                 self.modifyXmlNodeValue(docObj, xmlInstance["MasterDBPort"], xmlInstance["MasterDBPortV"])
                 self.modifyXmlNodeValue(docObj, xmlInstance["BackupDBServer"], xmlInstance["BackupDBServerV"])
                 self.modifyXmlNodeValue(docObj, xmlInstance["BackupDBPort"], xmlInstance["BackupDBPortV"])
+                self.modifyXmlNodeValue(docObj, xmlInstance["TCPPort"], xmlInstance["TCPPortV"])
+                self.modifyXmlNodeValue(docObj, xmlInstance["UDPPort"], xmlInstance["UDPPortV"])
 
             elif "AccessNode" in xmlInstance.keys():
                 self.modifyXmlNodeValue(docObj, xmlInstance["MasterDBServer"], xmlInstance["MasterDBServerV"])
@@ -167,8 +169,10 @@ class MofidyFSPFile(object):
         # writeFile.close()
     @classmethod
     def modifyIceMasterConfigFile(self,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,dbHost,dbPort,dbName,dbUser,dbPwd):
+
         # config.master
-        filePath = ("./TmpFile/ice_master/config.master", "./TmpFile/ice_master/config.node1", "./TmpFile/ice_master/config.server")
+        filePath = ("./TmpFile/ice_master/config.master", "./TmpFile/ice_master/config.node1", "./TmpFile/ice_master/config.server",
+                    "./TmpFile/ice_master/config.client")
         configInfo = {"ICEMasterIP": ICEMasterIP, "ICEMasterPort": ICEMasterPort, "ICEReplicaIP": ICEReplicaIP,
                           "ICEReplicaPort": ICEReplicaPort, "dbHost": dbHost, "dbPort": dbPort, "dbName": dbName,
                           "dbUser": dbUser, "dbPwd": dbPwd}
@@ -195,17 +199,32 @@ class MofidyFSPFile(object):
             self.modifyFile(filePath[2], "db=", "数据库实例名", configInfo["dbName"])
             self.modifyFile(filePath[2], "user=", "用户名", configInfo["dbUser"])
             self.modifyFile(filePath[2], "password=", "用户密码", configInfo["dbPwd"])
-            self.modifyFile(filePath[2], "AdapterEndpoints", "YYY.YYY.YYY.YYY", configInfo["ICEReplicaIP"])
-            self.modifyFile(filePath[2], "AdapterEndpoints", "yyyy", configInfo["ICEReplicaPort"])
+            self.modifyFile(filePath[2], "AdapterEndpoints", "YYY.YYY.YYY.YYY", configInfo["ICEMasterIP"])
+            #set the port to 30000
+            self.modifyFile(filePath[2], "AdapterEndpoints", "yyyy", "30000")
             print "Update config.server successfully!"
         except Exception, e:
             print "Error occur in modify file: IceGrid Master config.server!"
             raise e
 
+        #config.client
+        try:
+            self.modifyFile(filePath[3], "Ice.Default.Locator", "XXX.XXX.XXX.XXX", configInfo["ICEMasterIP"])
+            self.modifyFile(filePath[3], "Ice.Default.Locator", "xxxx", configInfo["ICEMasterPort"])
+            self.modifyFile(filePath[3], "Ice.Default.Locator", "YYY.YYY.YYY.YYY", configInfo["ICEReplicaIP"])
+            self.modifyFile(filePath[3], "Ice.Default.Locator", "yyyy", configInfo["ICEReplicaPort"])
+            print "Update config.client successfully!"
+        except Exception, e:
+            print "Error occur in modify file:IceGrid Master config.client!"
+            raise e
+
+
+
     @classmethod
     def modifyIceReplicaConfigFile(self,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,dbHost,dbPort,dbName,dbUser,dbPwd):
         # config.replica
-        filePath = ("./TmpFile/ice_replica/config.replica", "./TmpFile/ice_replica/config.node2", "./TmpFile/ice_replica/config.server")
+        filePath = ("./TmpFile/ice_replica/config.replica", "./TmpFile/ice_replica/config.node2",
+                    "./TmpFile/ice_replica/config.server","./TmpFile/ice_replica/config.client")
         configInfo = {"ICEMasterIP": ICEMasterIP, "ICEMasterPort": ICEMasterPort, "ICEReplicaIP": ICEReplicaIP,
                       "ICEReplicaPort": ICEReplicaPort, "dbHost": dbHost, "dbPort": dbPort, "dbName": dbName,
                       "dbUser": dbUser, "dbPwd": dbPwd}
@@ -222,7 +241,9 @@ class MofidyFSPFile(object):
             self.modifyFile(filePath[1], "Ice.Default.Locator", "XXX.XXX.XXX.XXX", configInfo["ICEMasterIP"])
             self.modifyFile(filePath[1], "Ice.Default.Locator", "xxxx", configInfo["ICEMasterPort"])
             self.modifyFile(filePath[1], "Ice.Default.Locator", "YYY.YYY.YYY.YYY", configInfo["ICEReplicaIP"])
-            self.modifyFile(filePath[1], "Ice.Default.Locator", "yyyy", configInfo["ICEReplicaPort"])
+            # set the port to 30000
+            # self.modifyFile(filePath[1], "Ice.Default.Locator", "yyyy", configInfo["ICEReplicaPort"])
+            self.modifyFile(filePath[1], "Ice.Default.Locator", "yyyy", "30000")
             print "Update config.node2 successfully"
         except Exception, e:
             print "Error occur in modify file: IceGrid Replica config.node2!"
@@ -240,7 +261,16 @@ class MofidyFSPFile(object):
         except Exception, e:
             print "Error occur in modify file: IceGrid Replica config.server!"
             raise e
-
+        #config.client
+        try:
+            self.modifyFile(filePath[0], "Ice.Default.Locator", "XXX.XXX.XXX.XXX", configInfo["ICEMasterIP"])
+            self.modifyFile(filePath[0], "Ice.Default.Locator", "xxxx", configInfo["ICEMasterPort"])
+            self.modifyFile(filePath[0], "IceGrid.Registry.Client.Endpoints", "yyyy", configInfo["ICEReplicaPort"])
+            self.modifyFile(filePath[1], "Ice.Default.Locator", "yyyy", configInfo["ICEReplicaPort"])
+            print "Update config.replica successfully"
+        except Exception, e:
+            print "Error occur in modify file: IceGrid Replica config.replica!"
+            raise e
     # def commonConfigFIle(newfilePath,oldFilePath,**newValue):
     #
     #     xmlInstance = xmlObj()
@@ -269,13 +299,17 @@ class MofidyFSPFile(object):
     #     # after finished used the dic, clear it so that next time the vnc value not in the dic
     #     xmlInstance.clear()
     @classmethod
-    def modifyManagerConfigFile(self,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,):
+    def modifyManagerConfigFile(self,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,ManagerTCPPort,ManagerUDPPort):
         xmlInstance = self.xmlObj()
-        ManagerValue = {"MasterDBServerV": ICEMasterIP, "MasterDBPortV": ICEMasterPort, "BackupDBServerV": ICEReplicaIP,
+
+        ManagerValue = {"TCPPortV":ManagerTCPPort, "UDPPortV": ManagerUDPPort,"MasterDBServerV": ICEMasterIP, "MasterDBPortV": ICEMasterPort, "BackupDBServerV": ICEReplicaIP,
                         "BackupDBPortV": ICEReplicaPort, "managerNode": "managernode"}
+
         xmlInstance.update(ManagerValue)
+
         newFilePath = "./TmpFile/manager/NewServiceConfig.xml"
         oldFilePath = "./TmpFile/manager/ServiceConfig.xml"
+
         AVObj = lxml.etree.parse(oldFilePath)
         try:
             self.modifyXMLFile(newFilePath, AVObj, **xmlInstance)
@@ -288,9 +322,10 @@ class MofidyFSPFile(object):
         os.remove(oldFilePath)
         os.rename(newFilePath, oldFilePath)
 
-    def modifyVncConfigFile(self,VNCIP,VNCPort,VNCTCPPort,VNCUDPPort,VNCInstanceGroupID,VNCServiceInstanceID,VNCServiceInstancePassword,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,ManagerServiceIPv4Addr):
+    def modifyVncConfigFile(self,VNCIP,VNCTCPPort,VNCUDPPort,VNCInstanceGroupID,VNCServiceInstanceID,VNCServiceInstancePassword,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,ManagerServiceIPv4Addr):
         xmlInstance = self.xmlObj()
-        VNCServiceAddress = "TCP:" + VNCIP + ":" + VNCPort + ";" + "UDP:" + VNCIP + ":" + VNCPort
+        # VNCServiceAddress = "TCP:" + VNCIP + ":" + VNCPort + ";" + "UDP:" + VNCIP + ":" + VNCPort
+        VNCServiceAddress = "TCP:" + VNCIP + ":" + VNCTCPPort + ";" + "UDP:" + VNCIP + ":" + VNCUDPPort
         VNCAdaptorAddress = VNCServiceAddress
         VNCAdaptorService = VNCServiceAddress
         VNCValue = {"TCPPortV": VNCTCPPort, "UDPPortV": VNCUDPPort, "InstanceGroupIDV": VNCInstanceGroupID,
@@ -310,9 +345,9 @@ class MofidyFSPFile(object):
         # Remove file and Rename file
         os.remove(oldFilePath)
         os.rename(newFilePath, oldFilePath)
-    def modifyWhiteBoardConfigFile(self,WhiteBoardIP,WhiteBoardPort,WBTCPPort,WBUDPort,WBInstanceGroupID,WBServiceInstanceID,WBServiceInstancePassword,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,ManagerServiceIPv4Addr):
+    def modifyWhiteBoardConfigFile(self,WhiteBoardIP,WBTCPPort,WBUDPort,WBInstanceGroupID,WBServiceInstanceID,WBServiceInstancePassword,ICEMasterIP,ICEMasterPort,ICEReplicaIP,ICEReplicaPort,ManagerServiceIPv4Addr):
         xmlInstance = self.xmlObj()
-        WBServiceAddress = "TCP:" + WhiteBoardIP + ":" + WhiteBoardPort
+        WBServiceAddress = "TCP:" + WhiteBoardIP + ":" + WBTCPPort
         WBAdaptorAddress = WBServiceAddress
         WBAdaptorService = WBServiceAddress
 

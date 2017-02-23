@@ -77,8 +77,8 @@ def cleanaction(request):
         username='root'
         password='123456'
         for ip in iplist:
-                execmd1 = "cd /root\nrm -rf sss*"
-                b.sshclient_execmd(ip, port, username, password, execmd1)
+                # execmd1 = "cd /root\nrm -rf sss*"
+                # b.sshclient_execmd(ip, port, username, password, execmd1)
                 execmd2 = "cd /\nrm -rf fsmeeting/"
                 b.sshclient_execmd(ip, port, username, password, execmd2)
         return render(request, 'firstform/cleansuccessfully.html')
@@ -680,27 +680,37 @@ def deployv2(request):
 
 
 def submitallserviceinfo(request):
+        t1 = datetime.datetime.now()
+        print "start time", t1
         request.encoding = 'utf-8'
         packageURL = request.GET['pkgURL']
         packageName = packageURL.split("/")[-1]  # sss-1.2.2.1.tar.gz
         sss = packageName.split(".tar")[0]  # sss-1.2.2.1
+
+
         formdata=request.GET
         formdata=dict(formdata._iterlists())
-        #delete pkg from the dict
         del formdata['pkgURL']
-        # import  pdb;
-        # pdb.set_trace();
         iplist=[]
         servicelist=[]
+        dbinfo={}
         for k, v in formdata.iteritems():
-                print "k is: ", k
-                print "V is: ", v
                 if "ip" in k:
                         for i in v:
                                 iplist.append(i)
                 if "service" in k:
                         for i in v:
                                 servicelist.append(i)
+                if "dbHost" in k:
+                        dbinfo["dbHost"]=v[0]
+                if "dbPort" in k:
+                        dbinfo["dbPort"]=v[0]
+                if "dbName" in k:
+                        dbinfo["dbName"]=v[0]
+                if "dbUser" in k:
+                        dbinfo["dbUser"]=v[0]
+                if "dbPwd" in k:
+                        dbinfo["dbPwd"]=v[0]
         machine_service = dict(zip(iplist, servicelist))
         # for k,v in phonebook.items():
         #         print k,v
@@ -724,10 +734,19 @@ def submitallserviceinfo(request):
         # mac_service[machine4]=servicelist4
         # mac_service[machine5]=servicelist5
         #
-        mLogic.m_DownPkgAndTar(packageURL,machine_service,PORT,LINUX_USER,LINUX_PWD)
-        mLogic.m_InstallService(machine_service,sss,LINUX_USER,LINUX_PWD,PORT)
 
-        return render(request,'firstform/installsuccessfully.html')
+        # mLogic.m_DownPkgAndTar(packageURL,machine_service,PORT,LINUX_USER,LINUX_PWD)
+        mLogic.m_InstallService(machine_service,sss,LINUX_USER,LINUX_PWD,PORT)
+        mLogic.m_SetCondifFile(machine_service,sss,LINUX_USER,LINUX_PWD,PORT,dbinfo)
+        # mLogic.m_StartService(machine_service,LINUX_USER,LINUX_PWD,PORT)
+
+        t2 = datetime.datetime.now()
+        print "end time: ", t2
+
+        tt = t2 - t1
+
+        info = {"totaltime": tt}
+        return render(request,'firstform/installsuccessfully.html',info)
 
 def search_form(request):
         return render(request,'firstform/deployinfo.html')
