@@ -8,7 +8,7 @@ urlpatterns = [
 
     url(r'^index/$',views.home,name='home'),
     url(r'^deployinfo/$',views.search_form),
-    url(r'^search/$',views.search),
+    # url(r'^search/$',views.search),
     url(r'^sch2/$',views.deployv2),
 
     url(r'^cleanup/$',views.cleanup),

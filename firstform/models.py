@@ -348,17 +348,17 @@ class modleLogic(object):
                         ss.startAccess(k, port, username, password)
                     elif "vnc" in service.lower():
                         ss.startVnc(k, port, username, password, remotePath)
-                    elif "whiteboard" in service.lower():
-                        ss.startWhiteBoard(k, port, username, password, remotePath)
-
-                    elif "av" in service.lower():
-                        ss.startAv(k, port, username, password, remotePath)
-
-                    elif "ice_master" in service.lower():
-                        ss.startIceMaster(k, port, username, password, remotePath)
-
-                    elif "ice_replica" in service.lower():
-                        ss.startIceReplica(k, port, username, password, remotePath)
+                    # elif "whiteboard" in service.lower():
+                    #     ss.startWhiteBoard(k, port, username, password, remotePath)
+                    #
+                    # elif "av" in service.lower():
+                    #     ss.startAv(k, port, username, password, remotePath)
+                    #
+                    # elif "ice_master" in service.lower():
+                    #     ss.startIceMaster(k, port, username, password, remotePath)
+                    #
+                    # elif "ice_replica" in service.lower():
+                    #     ss.startIceReplica(k, port, username, password, remotePath)
 
 
 

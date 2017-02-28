@@ -8,7 +8,8 @@ class StartService(object):
     @classmethod
     def startAv(self,hostname, port, username, password,basePath):
         # for single one
-        execmd="cd "+basePath+"/av\n./service"
+        # execmd="cd "+basePath+"/av\n./service"
+        execmd="systemctl start av"
         tf.sshclient_execmd(hostname, port, username, password, execmd)
 
     @classmethod
@@ -43,12 +44,14 @@ class StartService(object):
 
     @classmethod
     def startVnc(self,hostname, port, username, password,basePath):
-        execmd = "cd " + basePath + "/vnc\n./service"
+        # execmd = "cd " + basePath + "/vnc\n./service"
+        execmd = "systemctl start vnc"
         tf.sshclient_execmd(hostname, port, username, password, execmd)
 
     @classmethod
     def startWhiteBoard(self,hostname, port, username, password,basePath):
-        execmd = "cd " + basePath + "/whiteboard\n./service"
+        # execmd = "cd " + basePath + "/whiteboard\n./service"
+        execmd = "systemctl start whiteboard"
         tf.sshclient_execmd(hostname, port, username, password, execmd)
 
     @classmethod
